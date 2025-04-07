@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\RequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register', [UserController::class, 'register'])->name('user.register');
+Route::get('/login', [UserController::class, 'login'])->name('user.login');
+Route::get('/attendance', [UserController::class, 'attend'])->name('user.attend');
+Route::get('/attendance/list', [UserController::class, 'index'])->name('user.index');
+Route::get('/attendance/detail', [UserController::class, 'detail'])->name('user.detail');
+Route::get('/stamp_correction_request/list', [UserController::class, 'apply'])->name('user.apply');
+
+Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('/admin/attendance/list', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/attendance/detail', [AdminController::class, 'detail'])->name('admin.detail');
+
+Route::get('/admin/staff/list', [StaffController::class, 'detail'])->name('staff.index');
+Route::get('/admin/attendance/staff/detail', [StaffController::class, 'attendList'])->name('staff.attendList');
+
+Route::get('/stamp_correction_request/list', [RequestController::class, 'apply'])->name('admin.apply');
+Route::get('/stamp_correction_request/approve/detail', [RequestController::class, 'correction'])->name('admin.correct');
