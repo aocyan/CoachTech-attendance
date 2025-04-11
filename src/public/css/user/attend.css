@@ -1,0 +1,106 @@
+.header__logo {
+    font-size: 2vw;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.attendance__status {
+    margin-top: 60px;
+    font-size: 2vw;
+    text-align: center;
+}
+
+.attendance__status--text {
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 20%;
+    font-size: 2vw;
+    font-weight: bold;
+    background-color: #f1e9e9;
+    border-radius: 10px;
+}
+
+.form__date {
+    margin-top: 40px;
+    margin-left: 14%;
+    text-align: center;
+}
+
+.form__date--text {
+    font-size: 3vw;
+    font-weight: bold;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    border: none;
+}
+
+.form__time {
+    margin-top: 30px;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.form__time--text {
+    font-size: 3vw;
+    font-weight: bold;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    border: none;
+}
+
+.form__button {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.form__button--submit {
+    padding: 10px 0;
+    width: 20%;
+    font-size: 2vw;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.form__button-container {
+    margin-top: 80px;
+    margin-bottom: 40px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.button__box-right {
+    margin-left: 10%;
+}
+
+.box__left--submit {
+    padding: 10px;
+    font-size: 2vw;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.box__right--submit {
+    padding: 10px;
+    font-size: 2vw;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.empty__status {
+    margin-top: 150px;
+}
+
+.empty__status--text {
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+}

@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('css')
-	<link rel="stylesheet" href="{{ asset('css/user/login.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
 @endsection
 
 @section('content')
 <div class="header__logo">
-    <h1>ログイン<h1>
+    <h1>管理者ログイン<h1>
 </div>
-<form action="/login" method="post">
-@csrf
+{{--<form action="{{ route('admin.store') }}" method="post">
+@csrf--}}
     <div class="form__container">
         <p>メールアドレス</p>
-        <input class="form--text" type="email" name="email" value="{{ old('email') }}" />
+        <input class="form--text" type="email" name="email" />
     </div>
     <div class="form__error">
         @error('email')
@@ -29,10 +29,7 @@
         @enderror
     </div>
     <div class="form__button">
-        <button class="form__button--submit" type="submit">ログインする</button>
+        <button class="form__button--submit" type="submit">管理者ログインする</button>
     </div>
-</form>
-<div class="register__link">
-    <a class="register__link--button" href="/register">会員登録はこちら</a>
-</div>
+{{--</form>--}}
 @endsection
