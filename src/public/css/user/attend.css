@@ -95,12 +95,29 @@
     cursor: pointer;
 }
 
-.empty__status {
-    margin-top: 150px;
+.clock-out__status {
+    margin-top: 100px;
 }
 
-.empty__status--text {
+.clock-out__status--text {
     font-size: 2vw;
     font-weight: bold;
     text-align: center;
+}
+
+.clock-out__link {
+    margin: 80px 30px;
+   
+}
+
+.clock-out__link--button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 30px;
+    font-size: 2vw;
+    font-weight: bold;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #000;
+    cursor: pointer;
 }

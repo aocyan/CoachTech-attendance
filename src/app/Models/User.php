@@ -17,6 +17,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
     ];
 
     public function attendances()
@@ -28,6 +29,7 @@ class User extends Authenticatable
     {
         $user = request()->all();
         $user['password'] = Hash::make($user['password']);
+        $user['status'] = 'clockIn';
 
         return User::create($user);
     }

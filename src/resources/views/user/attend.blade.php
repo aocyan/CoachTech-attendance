@@ -8,7 +8,7 @@
 <div class="header__logo">
     <h1>出勤状況</h1>
 </div>
-@if($userStatus === 'clockIn')
+@if(Auth::user()->status === 'clockIn')
 <div class="attendance__status">
     <p class="attendance__status--text">勤務外<p>
 </div>
@@ -24,7 +24,7 @@
         <button class="form__button--submit" type="submit">出勤する</button>
     </div>
 </form>
-@elseif($userStatus === 'working')
+@elseif(Auth::user()->status === 'working')
 <div class="attendance__status">
     <p class="attendance__status--text">勤務中<p>
 </div>
@@ -48,7 +48,7 @@
         </form>
     </div>   
 </div>
-@elseif($userStatus === 'intervalIn')
+@elseif(Auth::user()->status === 'intervalIn')
 <div class="attendance__status">
     <p class="attendance__status--text">休憩中<p>
 </div>
@@ -64,12 +64,18 @@
         <button class="form__button--submit" type="submit">休憩終わり</button>
     </div>
 </form>
-@elseif($userStatus === 'clockOut')
+@elseif(Auth::user()->status === 'clockOut')
 <div class="attendance__status">
     <p class="attendance__status--text">退勤済<p>
 </div>
-<div class="empty__status">
-    <p class="empty__status--text">一日お疲れさまでした</p>
+<div class="clock-out__status">
+    <p class="clock-out__status--text">一日お疲れさまでした</p>
+    <div class="clock-out__link">
+        <form action="/logout" method="post">
+        @csrf
+            <button class="clock-out__link--button">ログアウト</button>  
+        </form>
+    </div>
 </div>
 @endif
 @endsection

@@ -30,8 +30,8 @@
         <div class="nav__box">
             <form action="/logout" method="post">
             @csrf
-            <button class="logout__link--button">ログアウト</button>  
-        </form>
+                <button class="logout__link--button">ログアウト</button>  
+            </form>
         </div>
     </div>
     @endif

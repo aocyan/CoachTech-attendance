@@ -25,7 +25,10 @@ class Interval extends Model
     {
         $user = Auth::user();
 
-        $attendance = $user->attendances()->orderBy('created_at', 'desc')->first();
+        $attendance = $user
+            -> attendances()
+            -> orderBy('created_at', 'desc')
+            -> first();
 
         $interval = new Interval();
         $interval -> attendance_id = $attendance->id;
@@ -37,7 +40,7 @@ class Interval extends Model
         return $attendance->only(['interval_in_at', 'interval_out_at']);
     }
 
-    public static function statusAttend()
+    public static function statusInterval()
     {
         $user = Auth::user();
 
@@ -56,10 +59,9 @@ class Interval extends Model
 
     public static function intervalInTime()
     {
-        $userStatus = 'intervalIn';
-        session(['userStatus' => $userStatus]);
-
         $user = Auth::user();
+        $user -> status = 'intervalIn';
+        $user->save();    
 
         $attendance = Auth::user()
             -> attendances()
@@ -82,16 +84,13 @@ class Interval extends Model
         } 
       
         $interval -> save();
-        
-        return compact('userStatus');
     }
 
     public static function intervalOutTime()
     {
-        $userStatus = 'working';
-        session(['userStatus' => $userStatus]);
-
         $user = Auth::user();
+        $user -> status = 'working';
+        $user->save();    
 
         $attendance = Auth::user()
             -> attendances()
@@ -114,7 +113,5 @@ class Interval extends Model
         } 
 
         $interval -> save();
-
-        return compact('userStatus');
     }
 }

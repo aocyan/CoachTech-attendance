@@ -18,11 +18,10 @@ use App\Http\Controllers\RequestController;
 */
 
 Route::post('/register', [UserController::class, 'store'])->name('user.store');
-
+Route::get('/attendance/default', [UserController::class, 'defaultAttend'])->name('user.default');
 Route::middleware('auth')->group(function () {
     Route::get('/attendance', [UserController::class, 'attend'])->name('user.attend');
 });
-Route::get('/attendance/status', [UserController::class, 'statusAttend'])->name('user.status');
 Route::post('/attendance/clock/in', [UserController::class, 'clockIn'])->name('user.clockIn');
 Route::post('/attendance/clock/out', [UserController::class, 'clockOut'])->name('user.clockOut');
 Route::post('/attendance/interval/in', [UserController::class, 'intervalIn'])->name('user.intervalIn');
