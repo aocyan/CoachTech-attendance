@@ -21,8 +21,8 @@ class UserController extends Controller
 
     public function defaultAttend()
 	{
-		$attendanceData = Attendance::defaultSettingAttend();
-		$intervalData = Interval::defaultSettingInterval();
+		Attendance::defaultSettingAttend();
+		Interval::defaultSettingInterval();
 
 		return redirect()->route('user.attend');
 	}
@@ -42,13 +42,6 @@ class UserController extends Controller
 		return view('user.attend', compact('dateTime', 'attendanceData','intervalData'));
 	}
 
-	public function loginAttend()
-	{
-		Attendance::userLoginAttend();
-
-		return redirect()->route('user.attend');
-	}
-
 	public function clockIn()
 	{
         Attendance::clockInTime();
@@ -58,21 +51,21 @@ class UserController extends Controller
 
 	public function clockOut()
 	{
-		$attendanceData = Attendance::clockOutTime();
+		Attendance::clockOutTime();
 		
 		return redirect()->route('user.attend');
 	}
 
 	public function intervalIn()
 	{
-		$intervalData = Interval::intervalInTime();
+		Interval::intervalInTime();
 
 		return redirect()->route('user.attend');
 	}
 
 	public function intervalOut()
 	{
-		$intervalData = Interval::intervalOutTime();
+		Interval::intervalOutTime();
 
 		return redirect()->route('user.attend');
 	}

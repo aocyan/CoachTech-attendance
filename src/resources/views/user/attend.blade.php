@@ -73,7 +73,7 @@
     <div class="clock-out__link">
         <form action="/logout" method="post">
         @csrf
-            <button class="clock-out__link--button">ログアウト</button>  
+            <button class="clock-out__link--button">ログアウトする</button>  
         </form>
     </div>
 </div>
