@@ -22,12 +22,12 @@ class User extends Authenticatable
 
     public function attendances()
     {
-        return $this->hasMany(Attendance::class, 'user_id');
+        return $this -> hasMany(Attendance::class, 'user_id');
     }
 
     public static function store()
     {
-        $user = request()->all();
+        $user = request() -> all();
         $user['password'] = Hash::make($user['password']);
         $user['status'] = 'clockIn';
 
