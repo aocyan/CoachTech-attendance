@@ -2,17 +2,21 @@
 
 namespace Database\Seeders;
 
+use App\Models\Interval;
+use App\Models\Attendance;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create()
+                         ->each(function ($user) {
+            Attendance::factory(10)->create(['user_id' => $user->id])
+                                   ->each(function ($attendance) {
+                    Interval::factory()->count(2)->forAttendance($attendance)->create();
+                });
+        });
     }
 }
