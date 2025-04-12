@@ -18,41 +18,38 @@ class Interval extends Model
 
     public function attendances()
     {
-        return $this->belongsTo(Attendance::class, 'attendance_id');
+        return $this -> belongsTo(Attendance::class, 'attendance_id');
     }
 
     public static function defaultSettingInterval()
     {
         $user = Auth::user();
 
-        $attendance = $user
-            -> attendances()
-            -> orderBy('created_at', 'desc')
-            -> first();
+        $attendance = $user -> attendances()
+                            -> orderBy('created_at', 'desc')
+                            -> first();
 
         $interval = new Interval();
         $interval -> attendance_id = $attendance->id;
         $interval -> interval_in_at = null;
         $interval -> interval_out_at = null;
 
-        $interval->save();
+        $interval -> save();
 
-        return $attendance->only(['interval_in_at', 'interval_out_at']);
+        return $attendance -> only(['interval_in_at', 'interval_out_at']);
     }
 
     public static function statusInterval()
     {
         $user = Auth::user();
 
-        $attendance = $user
-            -> attendances() 
-            -> orderBy('created_at', 'desc')
-            -> first();
+        $attendance = $user -> attendances() 
+                            -> orderBy('created_at', 'desc')
+                            -> first();
 
-        $interval = $attendance
-            -> intervals()
-            -> orderBy('created_at', 'desc')
-            -> first();
+        $interval = $attendance -> intervals()
+                                -> orderBy('created_at', 'desc')
+                                -> first();
 
         return $interval;
     }
@@ -61,24 +58,22 @@ class Interval extends Model
     {
         $user = Auth::user();
         $user -> status = 'intervalIn';
-        $user->save();    
+        $user -> save();    
 
-        $attendance = Auth::user()
-            -> attendances()
-            -> whereDate('created_at',now())
-            -> whereNotNull('clock_in_at')
-            -> latest()
-            -> first();
+        $attendance = Auth::user() -> attendances()
+                                   -> whereDate('created_at',now())
+                                   -> whereNotNull('clock_in_at')
+                                   -> latest()
+                                   -> first();
 
-        $interval = $attendance
-            -> intervals()
-            -> latest()
-            -> first();
+        $interval = $attendance -> intervals()
+                                -> latest()
+                                -> first();
         
         if( ($interval->interval_in_at) !== null) {
             $interval = new Interval();
-            $interval->attendance_id = $attendance->id;
-            $interval->interval_in_at = now();
+            $interval -> attendance_id = $attendance->id;
+            $interval -> interval_in_at = now();
         } else{
             $interval -> interval_in_at = now();
         } 
@@ -90,24 +85,22 @@ class Interval extends Model
     {
         $user = Auth::user();
         $user -> status = 'working';
-        $user->save();    
+        $user -> save();    
 
-        $attendance = Auth::user()
-            -> attendances()
-            -> whereDate('created_at',now())
-            -> whereNotNull('clock_in_at')
-            -> latest()
-            -> first();
+        $attendance = Auth::user() -> attendances()
+                                   -> whereDate('created_at',now())
+                                   -> whereNotNull('clock_in_at')
+                                   -> latest()
+                                   -> first();
 
-        $interval = $attendance
-            -> intervals()
-            -> latest()
-            -> first();
+        $interval = $attendance -> intervals()
+                                -> latest()
+                                -> first();
 
         if( ($interval->interval_out_at) !== null) {
             $interval = new Interval();
-            $interval->attendance_id = $attendance->id;
-            $interval->interval_out_at = now();
+            $interval -> attendance_id = $attendance->id;
+            $interval -> interval_out_at = now();
         } else{
             $interval -> interval_out_at = now();
         } 

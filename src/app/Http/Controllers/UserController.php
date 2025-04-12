@@ -16,7 +16,7 @@ class UserController extends Controller
 
 		Auth::login($user);
 
-		return redirect()->route('user.default');
+		return redirect() -> route('user.default');
 	}
 
     public function defaultAttend()
@@ -24,7 +24,7 @@ class UserController extends Controller
 		Attendance::defaultSettingAttend();
 		Interval::defaultSettingInterval();
 
-		return redirect()->route('user.attend');
+		return redirect() -> route('user.attend');
 	}
 
 	public function attend()
@@ -33,10 +33,9 @@ class UserController extends Controller
 		$attendanceData = Attendance::statusAttend();
 		$intervalData = Interval::statusInterval();
 
-		if ($attendanceData->updated_at
-        	->toDateString() !== now()
-        	->toDateString()) {
-				Attendance::dateChanges();
+		if ($attendanceData->updated_at -> toDateString() !== now()
+        								-> toDateString()) {
+			Attendance::dateChanges();
 		}
 
 		return view('user.attend', compact('dateTime', 'attendanceData','intervalData'));
@@ -46,28 +45,28 @@ class UserController extends Controller
 	{
         Attendance::clockInTime();
 
-		return redirect()->route('user.attend');
+		return redirect() -> route('user.attend');
 	}
 
 	public function clockOut()
 	{
 		Attendance::clockOutTime();
 		
-		return redirect()->route('user.attend');
+		return redirect() -> route('user.attend');
 	}
 
 	public function intervalIn()
 	{
 		Interval::intervalInTime();
 
-		return redirect()->route('user.attend');
+		return redirect() -> route('user.attend');
 	}
 
 	public function intervalOut()
 	{
 		Interval::intervalOutTime();
 
-		return redirect()->route('user.attend');
+		return redirect() -> route('user.attend');
 	}
 
     public function index()

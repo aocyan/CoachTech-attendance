@@ -19,9 +19,9 @@ class AttendanceFactory extends Factory
         $minute = rand(0, 59);
         $second = rand(0, 59);
 
-        $clockIn = (clone $randomDate)-> setTime($hour, $minute, $second);
+        $clockIn = (clone $randomDate) -> setTime($hour, $minute, $second);
 
-        $clockOut = (clone $clockIn)-> modify('+' . rand(9, 10) . ' hours');
+        $clockOut = (clone $clockIn) -> modify('+' . rand(9, 10) . ' hours');
 
         return [
             'user_id' => User::factory(),

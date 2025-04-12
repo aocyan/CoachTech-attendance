@@ -13,10 +13,11 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create()
                          ->each(function ($user) {
-            Attendance::factory(10)->create(['user_id' => $user->id])
-                                   ->each(function ($attendance) {
-                    Interval::factory()->count(2)->forAttendance($attendance)->create();
-                });
+                                Attendance::factory(10)->create(['user_id' => $user->id]) -> each(function ($attendance) {
+                                    Interval::factory() -> count(2) 
+                                                        ->forAttendance($attendance)
+                                                        ->create();
+                                });
         });
     }
 }

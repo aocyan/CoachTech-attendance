@@ -22,11 +22,13 @@ class IntervalFactory extends Factory
 
     public function forAttendance(Attendance $attendance)
     {
-        $clockIn = Carbon::parse($attendance->clock_in_at);
-        $clockOut = Carbon::parse($attendance->clock_out_at);
+        $clockIn = Carbon::parse($attendance -> clock_in_at);
+        $clockOut = Carbon::parse($attendance -> clock_out_at);
 
-        $intervalIn = $this->faker->dateTimeBetween($clockIn, $clockOut);
-        $intervalOut = Carbon::parse($intervalIn)->addMinutes(rand(15, 90))->min($clockOut);
+        $intervalIn = $this -> faker
+                            ->dateTimeBetween($clockIn, $clockOut);                           
+        $intervalOut = Carbon::parse($intervalIn) -> addMinutes(rand(15, 90))
+                                                  ->min($clockOut);
 
         return $this->state([
             'attendance_id' => $attendance->id,

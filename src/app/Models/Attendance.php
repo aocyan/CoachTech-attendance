@@ -19,12 +19,12 @@ class Attendance extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this -> belongsTo(User::class, 'user_id');
     }
 
     public function intervals()
     {
-        return $this->hasMany(Interval::class,'attendance_id');
+        return $this -> hasMany(Interval::class,'attendance_id');
     }
 
     public static function nowDateTime()
@@ -33,8 +33,8 @@ class Attendance extends Model
         setlocale(LC_TIME, 'ja_JP.UTF-8');
 
         return [
-            'date' => now()->isoFormat('YYYY年M月D日（ddd）'),
-            'time' => now()->format('H:i'),
+            'date' => now() -> isoFormat('YYYY年M月D日（ddd）'),
+            'time' => now() -> format('H:i'),
         ];
     }
 
@@ -50,17 +50,16 @@ class Attendance extends Model
         $attendance -> clock_out_at = null; 
         $attendance -> save();
 
-        return $attendance->only(['clock_in_at', 'clock_out_at']);
+        return $attendance -> only(['clock_in_at', 'clock_out_at']);
     }
 
     public static function statusAttend()
     {
         $user = Auth::user();
 
-        $attendance = $user
-            -> attendances()
-            -> orderBy('created_at', 'desc')
-            -> first();
+        $attendance = $user -> attendances()
+                            -> orderBy('created_at', 'desc')
+                            -> first();
 
         return $attendance;
     }
@@ -69,10 +68,9 @@ class Attendance extends Model
     {
         $user = Auth::user();
 
-        $attendance = $user
-            -> attendances()
-            -> whereNull('clock_in_at')
-            -> first();
+        $attendance = $user -> attendances()
+                            -> whereNull('clock_in_at')
+                            -> first();
 
         Attendance::defaultSettingAttend();
         Interval::defaultSettingInterval();
@@ -84,10 +82,9 @@ class Attendance extends Model
         $user -> status = 'working';
         $user -> save();    
 
-        $attendance = $user
-            -> attendances()
-            -> whereNull('clock_in_at')
-            -> first();
+        $attendance = $user -> attendances()
+                            -> whereNull('clock_in_at')
+                            -> first();
 
         $attendance -> clock_in_at = now();
         $attendance -> save();
@@ -99,10 +96,9 @@ class Attendance extends Model
         $user -> status = 'clockOut';
         $user ->save();    
 
-        $attendance = $user
-            -> attendances()
-            -> whereNull('clock_out_at')
-            -> first();
+        $attendance = $user -> attendances()
+                            -> whereNull('clock_out_at')
+                            -> first();
 
         $attendance -> clock_out_at = now();      
         $attendance -> save();
