@@ -22,7 +22,7 @@
             <a class="nav__link" href="{{ route('user.attend') }}" >勤務</a>
         </div>
         <div class="nav__box">
-            <a class="nav__link" href="">勤務一覧</a>
+            <a class="nav__link" href="{{ route('user.index') }}">勤務一覧</a>
         </div>
         <div class="nav__box">
             <a class="nav__link" href="">申請</a>

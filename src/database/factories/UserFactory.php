@@ -17,7 +17,7 @@ class UserFactory extends Factory
             'email' => $this -> faker->unique()
                              -> safeEmail(),
             'password' => bcrypt('1234abcd'),
-            'status' => bcrypt('clockIn'),
+            'status' => 'clockIn',
         ];
     }
 }

@@ -69,9 +69,17 @@ class UserController extends Controller
 		return redirect() -> route('user.attend');
 	}
 
-    public function index()
+    public function index(Request $request)
 	{
-		return view('user.index');
+    	$year = $request->query('year', now() -> year);
+    	$month = $request->query('month', now() -> month);
+		$indexTime = Attendance::indexTime($year, $month);
+
+		$MonthClockInTime = Attendance::getMonthClockTime(Auth::user(), $year, $month);
+		$intervalTotalTime = Interval::getMonthIntervalTotalTime(Auth::user(), $year, $month);
+		$workingTotalTime = Attendance::workingTotalTime(Auth::user(), $year, $month);
+
+		return view('user.index', array_merge($indexTime, $MonthClockInTime,$intervalTotalTime,$workingTotalTime));
 	}
 
     public function detail()

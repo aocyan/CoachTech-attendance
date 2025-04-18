@@ -2,22 +2,37 @@
 
 namespace Database\Seeders;
 
-use App\Models\Interval;
-use App\Models\Attendance;
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Attendance;
+use App\Models\Interval;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run()
+    public function run(int $userCount = 1, int $attendanceDays = 260): void
     {
-        User::factory(10)->create()
-                         ->each(function ($user) {
-                                Attendance::factory(10)->create(['user_id' => $user->id]) -> each(function ($attendance) {
-                                    Interval::factory() -> count(2) 
-                                                        ->forAttendance($attendance)
-                                                        ->create();
-                                });
+        User::factory($userCount) -> create() -> each(function ($user) use ($attendanceDays) {
+
+            $usedDates = collect();
+
+            for ($i = 0; $i < $attendanceDays; $i++) {
+                do {
+                    $date = now() -> subDays(rand(1, 365)) -> format('Y-m-d');
+                } while ($usedDates -> contains($date));
+
+                $usedDates -> push($date);
+
+                $attendance = Attendance::factory()
+                    ->for($user)
+                    ->forDate($date)
+                    ->create();
+
+                $intervals = Interval::factory() -> forAttendance($attendance);
+                foreach ($intervals as $interval) {
+                    Interval::create($interval);
+                }
+            }
         });
     }
 }

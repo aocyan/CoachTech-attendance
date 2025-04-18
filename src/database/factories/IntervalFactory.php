@@ -2,38 +2,55 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
 use App\Models\Interval;
 use App\Models\Attendance;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 class IntervalFactory extends Factory
 {
-    protected $model = \App\Models\Interval::class;
+    protected $model = Interval::class;
 
     public function definition()
     {
-        return [
-            'attendance_id' => Attendance::factory(),
-            'interval_in_at' => now(),
-            'interval_out_at' => now(),
-        ];
+        //
     }
 
     public function forAttendance(Attendance $attendance)
     {
-        $clockIn = Carbon::parse($attendance -> clock_in_at);
-        $clockOut = Carbon::parse($attendance -> clock_out_at);
+        $clockIn = Carbon::parse($attendance->clock_in_at);
+        $clockOut = Carbon::parse($attendance->clock_out_at);
 
-        $intervalIn = $this -> faker
-                            ->dateTimeBetween($clockIn, $clockOut);                           
-        $intervalOut = Carbon::parse($intervalIn) -> addMinutes(rand(15, 90))
-                                                  ->min($clockOut);
+        $intervalStartLimit = (clone $clockIn)->addMinutes(60);
+        $intervalEndLimit = (clone $clockOut)->subMinutes(60);
 
-        return $this->state([
-            'attendance_id' => $attendance->id,
-            'interval_in_at' => $intervalIn,
-            'interval_out_at' => $intervalOut,
-        ]);
+        $intervalCount = rand(1, 3);
+        
+        $maxIntervalMinutes = 90;     
+        $totalIntervalMinutes = 0;
+        $intervals = [];
+
+        for ($i = 1; $i <= $intervalCount; $i++) {
+
+            $remaining = $maxIntervalMinutes - $totalIntervalMinutes;
+            if ($remaining < 15) break;
+
+            $intervalMinutes = rand(15, min(30, $remaining));
+            $possibleStart = $this
+                -> faker  -> dateTimeBetween($intervalStartLimit, $intervalEndLimit -> copy() -> subMinutes($intervalMinutes));
+
+            $intervalIn = Carbon::parse($possibleStart);
+            $intervalOut = (clone $intervalIn) -> addMinutes($intervalMinutes);
+
+            $intervals[] = [
+                'attendance_id' => $attendance->id,
+                'interval_in_at' => $intervalIn,
+                'interval_out_at' => $intervalOut,
+            ];
+
+            $totalIntervalMinutes += $intervalMinutes;
+        }
+
+        return collect($intervals);
     }
 }
