@@ -28,18 +28,18 @@ Route::post('/attendance/interval/in', [UserController::class, 'intervalIn'])->n
 Route::post('/attendance/interval/out', [UserController::class, 'intervalOut'])->name('user.intervalOut');
 
 Route::get('/attendance/list', [UserController::class, 'index'])->name('user.index');
-Route::get('/attendance/detail', [UserController::class, 'detail'])->name('user.detail');
+Route::get('/attendance/{id}', [UserController::class, 'detail'])->name('user.detail');
 Route::get('/stamp_correction_request/list', [UserController::class, 'apply'])->name('user.apply');
 
 
 
-Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+/*Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/attendance/list', [AdminController::class, 'index'])->name('admin.index');
-Route::get('/attendance/detail', [AdminController::class, 'detail'])->name('admin.detail');
+Route::get('/attendance/detail', [AdminController::class, 'admin'])->name('admin.detail');
 
 
 
-Route::get('/admin/staff/list', [StaffController::class, 'detail'])->name('staff.index');
+Route::get('/admin/staff/list', [StaffController::class, 'staff'])->name('staff.index');
 Route::get('/admin/attendance/staff/detail', [StaffController::class, 'attendList'])->name('staff.attendList');
 
 

@@ -164,12 +164,15 @@ class Attendance extends Model
 
         $clockInTimes = [];
         $clockOutTimes = [];
+        $attendanceIds = [];
 
         foreach ($attendances as $attendance) {
 
             $dateKey = $attendance
                 -> clock_in_at
                 -> format('Y-m-d');
+
+            $attendanceIds[$dateKey] = $attendance->id;
 
             $clockInTimes[$dateKey] = $attendance
                 -> clock_in_at
@@ -187,6 +190,7 @@ class Attendance extends Model
         }   
 
         return [
+            'attendanceIds' => $attendanceIds,
             'clockInTimes' => $clockInTimes,
             'clockOutTimes' => $clockOutTimes,
         ];
@@ -233,6 +237,32 @@ class Attendance extends Model
 
         return [
             'workingTotalTimes' => $workingTimes
+        ];
+    }
+
+    public static function detailData($id)
+    {
+        $user = Auth::user();
+
+        $attendance = Attendance::where('user_id', $user->id)
+        ->whereDate('clock_in_at', $id)
+        ->first();
+
+        if (is_null($attendance)) {
+            $attendance = new Attendance([
+                'clock_in_at' => null,
+                'clock_out_at' => null,
+            ]);
+
+            $intervals = collect();
+        } else {
+            $intervals = $attendance->intervals;
+        }
+
+        return [
+            'user' => $user,
+            'attendance' => $attendance,
+            'intervals' => $intervals,
         ];
     }
 }

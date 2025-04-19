@@ -11,16 +11,16 @@
 <nav>
     <div class="nav-calendar__container">
         <div class="nav__last-month">
-            <a class="month__link--text" href="{{ route('user.index', ['year' => $prevDate->year, 'month' => $prevDate->month]) }}">⬅前月</a>
+            <a class="month__link--text" href="{{ route('user.index', ['year' => $prevDate -> year, 'month' => $prevDate -> month]) }}">⬅前月</a>
         </div>
         <div class="nav__calendar">
             <img class="nav__calendar--img" src="{{ asset('storage/item/calendar.png') }}" alt="カレンダーアイコン">
         </div>
         <div class="nav__date">
-            <input class="nav__date--text" type="text" name="date" value="{{ $displayMonth->format('Y年n月') }}" readonly />
+            <input class="nav__date--text" type="text" name="date" value="{{ $displayMonth -> format('Y年n月') }}" readonly />
         </div>
         <div class="nav__next-month">
-            <a class="month__link--text" href="{{ route('user.index', ['year' => $nextDate->year, 'month' => $nextDate->month]) }}">来月➡</a>
+            <a class="month__link--text" href="{{ route('user.index', ['year' => $nextDate->year, 'month' => $nextDate -> month]) }}">来月➡</a>
         </div>
     </div>
 </nav>
@@ -35,23 +35,23 @@
     </tr>
     @foreach ($dates as $day)
     <tr>
-        <td class="{{ $loop->last ? 'last-row-left' : '' }}">
-            <input class="table__td--text" type="text" name="date" value="{{ $day['date']->format('m/d') }}（{{ $day['dayWeek'] }}）" readonly />
+        <td class="{{ $loop -> last ? 'last-row__left' : '' }}">
+            <input class="table__td--text" type="text" name="date" value="{{ $day['date'] -> format('m/d') }}（{{ $day['dayWeek'] }}）" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" name="clockIn" value="{{ $clockInTimes[$day['date']->format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" name="clockIn" value="{{ $clockInTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" name="clockOUt" value="{{ $clockOutTimes[$day['date']->format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" name="clockOUt" value="{{ $clockOutTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" name="interval" value="{{ $intervalTotalTimes[$day['date']->format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" name="interval" value="{{ $intervalTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" type="text" name="workingTime" value="{{ $workingTotalTimes[$day['date']->format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" type="text" name="workingTime" value="{{ $workingTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
-        <td class="{{ $loop->last ? 'last-row-right' : '' }}">
-            <a class="table__link--button"  href="">詳細ページへ</a>
+        <td>
+            <a class="table__link--button" href="{{ route('user.detail', ['id' => $day['date'] -> format('Y-m-d')]) }}">詳細ページへ</a>
         </td>
     </tr>
     @endforeach

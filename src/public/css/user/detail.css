@@ -1,0 +1,144 @@
+body {
+    background-color: #F0EFF2;
+}
+
+.header__logo {
+    margin: 40px 0 40px 10%;
+    font-size: 1vw;
+}
+
+table {
+    margin-left: 10%;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+tr {
+    border-bottom: 5px solid #F0EFF2;
+}
+
+.table__th--text {
+    padding: 10px 0 10px 0;
+    width: 20%;
+    font-size: 1.5vw;
+    color: #c0bdc6;
+}
+
+.name__td--text {
+    padding: 10px 0 10px 0;
+    margin-left: 22%;
+    width: 70%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+
+.year__td--text {
+    margin-left: 24%;
+    padding: 10px 0 10px 0;
+    width: 25%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+
+.date__td--text {
+    margin-left: 3%;
+    padding: 10px 0 10px 0;
+    width: 25%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+
+.clock-start__td--text {
+    margin: 5px 0 5px 20%;
+    padding: 5px 0 5px 0;
+    width: 15%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #c0bdc6;
+    outline: none;
+    cursor: pointer;
+}
+
+.clock__mark {
+    margin-left: 5%;
+    padding: 10px 0 10px 0;
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+.clock-end__td--text {
+    margin: 5px 0 5px 6%;
+    padding: 5px 0 5px 0;
+    width: 15%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #c0bdc6;
+    outline: none;
+    cursor: pointer;
+}
+
+.empty--text {
+    margin-left: 20%;
+    font-size: 1.5vw;
+    color: #c72121;
+}
+
+.table__comment--text {
+    margin: 10px 0 10px 20%;
+    padding: 5px;
+    width: 45%;
+    height: 70px;
+    font-size: 1.5vw;
+    border: 1px solid #c0bdc6;
+    outline: none;
+    cursor: pointer;
+}
+
+.link__container {
+    margin-top: 40px;
+    display: flex;
+}
+
+.index__link {
+    margin-left: 23%;
+    width: 25%;
+    text-align: center;
+}
+
+.index__link--button {
+    padding: 15px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    text-decoration: none;
+    border: .5px solid #e6dcdc;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.correction__link {
+    margin-left: 5%;
+    width: 25%;
+    text-align: center;
+    transform: translateY(-20%);
+}
+
+.correction__link--button {
+    padding: 10px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    cursor: pointer;
+}

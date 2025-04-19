@@ -114,10 +114,10 @@ tr {
     cursor: pointer;
 }
 
-.last-row-left {
+.last-row__left {
     border-radius: 0 0 0 10px;
 }
 
-.last-row-right {
+.last-row__right {
     border-radius: 0 0 10px 0;
 }

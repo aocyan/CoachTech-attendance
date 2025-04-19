@@ -19,13 +19,13 @@
     @if(Auth::check())
     <div class="nav__container">
         <div class="nav__box">
-            <a class="nav__link" href="{{ route('user.attend') }}" >勤務</a>
+            <a class="nav__link" href="{{ route('user.attend') }}" >出勤状況</a>
         </div>
         <div class="nav__box">
             <a class="nav__link" href="{{ route('user.index') }}">勤務一覧</a>
         </div>
         <div class="nav__box">
-            <a class="nav__link" href="">申請</a>
+            <a class="nav__link" href="">修正一覧</a>
         </div>
         <div class="nav__box">
             <form action="/logout" method="post">

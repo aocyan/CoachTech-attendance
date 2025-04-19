@@ -79,12 +79,25 @@ class UserController extends Controller
 		$intervalTotalTime = Interval::getMonthIntervalTotalTime(Auth::user(), $year, $month);
 		$workingTotalTime = Attendance::workingTotalTime(Auth::user(), $year, $month);
 
-		return view('user.index', array_merge($indexTime, $MonthClockInTime,$intervalTotalTime,$workingTotalTime));
+		return view('user.index', array_merge(
+    		$indexTime,
+    		$MonthClockInTime,
+    		$intervalTotalTime,
+    		$workingTotalTime,
+    		['attendanceIds' => $MonthClockInTime['attendanceIds']]
+		));
 	}
 
-    public function detail()
+    public function detail($id)
 	{
-		return view('user.detail');
+		$detailData = Attendance::detailData($id);
+
+    	return view('user.detail', [
+        	'user' => $detailData['user'],
+        	'attendance' => $detailData['attendance'],
+			'intervals' => $detailData['intervals'],
+			'id' => $id,
+    	]);
 	}
 
     public function apply()
