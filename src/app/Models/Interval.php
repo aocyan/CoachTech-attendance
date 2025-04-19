@@ -132,7 +132,7 @@ class Interval extends Model
             -> get();
         
         foreach ($attendances as $attendance) {
-            $intervals = $attendance
+            $attendance->intervals = $attendance
                 -> intervals()
                 -> whereNotNull('interval_out_at')
                 -> get();
@@ -148,7 +148,7 @@ class Interval extends Model
             if ( !empty($attendance -> intervals) ) {
                 $total = 0;
 
-                foreach ($attendance->intervals as $interval) {
+                foreach ($attendance -> intervals as $interval) {
 
                     $start = $interval 
                         -> interval_in_at 
