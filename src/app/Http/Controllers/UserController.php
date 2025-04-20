@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Leave;
+use App\Models\Correction;
 use App\Models\Interval;
 use App\Models\Attendance;
 use App\Models\User;
@@ -98,6 +100,13 @@ class UserController extends Controller
 			'intervals' => $detailData['intervals'],
 			'id' => $id,
     	]);
+	}
+	public function correction(Request $request,$id)
+	{
+		$correction = Correction::store($request,$id);
+		Leave::store($request,$correction);
+
+		return redirect() -> route('user.apply');
 	}
 
     public function apply()

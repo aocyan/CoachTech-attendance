@@ -36,19 +36,19 @@
     @foreach ($dates as $day)
     <tr>
         <td class="{{ $loop -> last ? 'last-row__left' : '' }}">
-            <input class="table__td--text" type="text" name="date" value="{{ $day['date'] -> format('m/d') }}（{{ $day['dayWeek'] }}）" readonly />
+            <input class="table__td--text" type="text" value="{{ $day['date'] -> format('m/d') }}（{{ $day['dayWeek'] }}）" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" name="clockIn" value="{{ $clockInTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" value="{{ $clockInTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" name="clockOUt" value="{{ $clockOutTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" value="{{ $clockOutTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" name="interval" value="{{ $intervalTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" value="{{ $intervalTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" type="text" name="workingTime" value="{{ $workingTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" type="text" value="{{ $workingTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
             <a class="table__link--button" href="{{ route('user.detail', ['id' => $day['date'] -> format('Y-m-d')]) }}">詳細ページへ</a>
