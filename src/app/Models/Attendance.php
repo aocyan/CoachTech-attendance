@@ -249,14 +249,35 @@ class Attendance extends Model
     {
         $user = Auth::user();
 
+        $correction = Correction::where('user_id', $user->id)
+            ->whereDate('date', $id)
+            ->latest()
+            ->first();
+
         $attendance = Attendance::where('user_id', $user->id)
-        ->whereDate('clock_in_at', $id)
-        ->first();
+            ->whereDate('clock_in_at', $id)
+            ->first();
+
+        if ($correction) {
+            $attendance = new Attendance();
+            $attendance->clock_in_at = $correction->clock_in_at;
+            $attendance->clock_out_at = $correction->clock_out_at;
+            $attendance->exists = false;
+
+            $intervals = Leave::where('correction_id', $correction->id)->get();
+
+            return [
+                'user' => $user,
+                'attendance' => $attendance,
+                'intervals' => $intervals,
+                'correctionMode' => true,
+            ];
+        }
 
         if (is_null($attendance)) {
             $attendance = new Attendance([
-                'clock_in_at' => null,
-                'clock_out_at' => null,
+                    'clock_in_at' => null,
+                    'clock_out_at' => null,
             ]);
 
             $intervals = collect();
@@ -268,6 +289,7 @@ class Attendance extends Model
             'user' => $user,
             'attendance' => $attendance,
             'intervals' => $intervals,
+            'correctionMode' => false,
         ];
     }
 }

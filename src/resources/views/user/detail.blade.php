@@ -86,10 +86,15 @@
         <div class="index__link">
             <a class="index__link--button" href="/attendance/list">勤務一覧に戻る</a>
         </div>
+        @if ($correctionMode)
+            <p class="unapproved--text">※　承認待ちのため修正はできません</p>
+        @else
         <div class="correction__link">
             <button class="correction__link--button" name="submit">修正内容を申請する</button>
         </div>
+        @endif
     </div>
 </form>
+
     
 @endsection

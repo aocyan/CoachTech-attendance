@@ -98,9 +98,11 @@ class UserController extends Controller
         	'user' => $detailData['user'],
         	'attendance' => $detailData['attendance'],
 			'intervals' => $detailData['intervals'],
+			'correctionMode' => $detailData['correctionMode'],
 			'id' => $id,
     	]);
 	}
+
 	public function correction(Request $request,$id)
 	{
 		$correction = Correction::store($request,$id);
@@ -109,8 +111,11 @@ class UserController extends Controller
 		return redirect() -> route('user.apply');
 	}
 
-    public function apply()
+    public function apply(Request $request)
 	{
-		return view('user.apply');
+		$corrections = Correction::apply();
+		$searches = Correction::search($request);
+
+		return view('user.apply', compact('corrections','searches'));
 	}
 }

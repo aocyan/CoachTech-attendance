@@ -73,4 +73,30 @@ class Correction extends Model
 
         return $correction;
     }
+
+    public function apply()
+    {
+        $user = Auth::user();
+
+        return self::where('user_id', $user->id) -> get();
+    }
+
+    public static function search($request)
+    {
+        $user = Auth::user();
+
+        if ($request -> has('status') && $request -> status === 'approved') {
+            $corrections = Correction::where('user_id', $user->id)
+                                ->where('status', 'approved')
+                                ->get();
+        } elseif ($request -> has('status') && $request -> status === 'unapproved') {
+            $corrections = Correction::where('user_id', $user->id)
+                                ->where('status', 'unapproved')
+                                ->get();
+        } else {
+            $corrections = Correction::where('user_id', $user->id) -> get();
+        }
+
+        return $corrections;
+    }
 }

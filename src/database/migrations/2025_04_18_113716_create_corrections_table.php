@@ -16,7 +16,7 @@ class CreateCorrectionsTable extends Migration
         Schema::create('corrections', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('attendance_id');
+            $table->unsignedBigInteger('attendance_id')->nullable();
             $table->string('name');
             $table->string('date');
             $table->timestamp('clock_in_at')->nullable();
