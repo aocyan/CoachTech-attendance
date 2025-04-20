@@ -25,6 +25,11 @@ class User extends Authenticatable
         return $this -> hasMany(Attendance::class, 'user_id');
     }
 
+    public function corrections()
+    {
+        return $this -> hasMany(Correction::class, 'user_id');
+    }
+
     public static function store()
     {
         $user = request() -> all();

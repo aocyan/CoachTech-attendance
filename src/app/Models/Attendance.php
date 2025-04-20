@@ -33,6 +33,11 @@ class Attendance extends Model
         return $this -> hasMany(Interval::class,'attendance_id');
     }
 
+    public function correction()
+    {
+        return $this -> belongsTo(Correction::class,'attendance_id');
+    }
+
     public static function nowDateTime()
     {
         Carbon::setLocale('ja');
@@ -256,7 +261,7 @@ class Attendance extends Model
 
             $intervals = collect();
         } else {
-            $intervals = $attendance->intervals;
+            $intervals = $attendance -> intervals;
         }
 
         return [

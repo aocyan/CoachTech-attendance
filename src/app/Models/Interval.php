@@ -23,7 +23,7 @@ class Interval extends Model
         'interval_out_at' => 'datetime',
     ];
 
-    public function attendances()
+    public function attendance()
     {
         return $this -> belongsTo(Attendance::class, 'attendance_id');
     }
@@ -38,7 +38,7 @@ class Interval extends Model
             -> first();
 
         $interval = new Interval();
-        $interval -> attendance_id = $attendance->id;
+        $interval -> attendance_id = $attendance -> id;
         $interval -> interval_in_at = null;
         $interval -> interval_out_at = null;
 
