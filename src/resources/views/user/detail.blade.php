@@ -5,11 +5,12 @@
 @endsection
 
 @section('content')
+
+<div class="header__logo">
+    <h1>┃ 勤務詳細</h1>
+</div>
 <form  action="{{ route('user.correction', ['id' => $id]) }}" method="post">
 @csrf
-    <div class="header__logo">
-        <h1>┃ 勤務詳細</h1>
-    </div>
     <table>
         <tr>
             <th class="table__th--text">名前</th>
@@ -95,6 +96,5 @@
         @endif
     </div>
 </form>
-
-    
+ 
 @endsection

@@ -92,7 +92,8 @@ class UserController extends Controller
 
     public function detail($id)
 	{
-		$detailData = Attendance::detailData($id);
+		$date = $id;
+		$detailData = Attendance::detailData($date);
 
     	return view('user.detail', [
         	'user' => $detailData['user'],

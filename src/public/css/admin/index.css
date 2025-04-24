@@ -1,0 +1,131 @@
+body {
+    background-color: #F0EFF2;
+}
+
+.header__logo {
+    margin: 20px 10% 20px 10%;
+    margin-bottom: 20px;
+    font-size: 1vw;
+
+}
+
+.nav-calendar__container {
+    display: block;
+    display: flex;
+    margin: 0 10% 20px 10%;
+    padding: 0 10px;
+    width: 80%;
+    border-radius: 10px;
+    background-color: #fff;
+    align-items: center;
+}
+
+.nav__last-day {
+    width: 25%;
+    text-align: left;
+    transform: translateY(-10%);
+}
+
+.day__link--text {
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-decoration: none;
+    color: #848484;
+    cursor: pointer;
+}
+
+.nav__calendar {
+    width: 25%;
+    margin-right: 5%;
+    text-align: right;
+}
+
+.nav__date {
+    width: 20%;
+    font-size: 1.8vw;
+    font-weight: bold;
+    transform: translateX(-10%);
+}
+
+.nav__date--text {
+    width: 90%;
+    font-size: 1.8vw;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+
+.hidden__date--text {
+    width: 0%;
+    border: none;
+    outline: none;
+}
+
+.nav__calendar--img {
+    width: 20%;
+    cursor: pointer;
+}
+
+.nav__next-day {
+    width: 25%;
+    height: 20px;
+    text-align: right;
+    transform: translateY(-10%);
+}
+
+.attend__table {
+    margin: 40px 10% 40px 10%;
+    width: 80%;
+}
+
+th {
+    background-color: #fff;
+}
+
+th:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+.table__th--text {
+    width: 15%;
+    font-size: 1.5vw;
+    border-bottom: 5px solid #F0EFF2;
+}
+
+tr {
+    background-color: #fff;
+    border-bottom: 3px solid #F0EFF2;
+}
+
+.table__td--text {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 1.5vw;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+.table__link--button {
+    display: flex;
+    font-size: 1.5vw;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.last-row__left {
+    border-radius: 0 0 0 10px;
+}
+
+.last-row__right {
+    border-radius: 0 0 10px 0;
+}

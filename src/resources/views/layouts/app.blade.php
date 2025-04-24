@@ -16,7 +16,7 @@
 	<div class="header__inner">
         <img class="header--item" src="{{ asset('storage/logo/logo.svg') }}" alt="ロゴ" />
 	</div>
-    @if(Auth::check())
+    @if(Auth::guard('web')->check())
     <div class="nav__container">
         <div class="nav__box">
             <a class="nav__link" href="{{ route('user.attend') }}" >出勤状況</a>
@@ -29,6 +29,25 @@
         </div>
         <div class="nav__box">
             <form action="/logout" method="post">
+            @csrf
+                <button class="logout__link--button">ログアウト</button>  
+            </form>
+        </div>
+    </div>
+    @endif
+    @if(Auth::guard('admin')->check())
+    <div class="nav__container">
+        <div class="nav__box">
+            <a class="nav__link" href="{{ route('admin.attendance.list') }}" >勤務一覧</a>
+        </div>
+        <div class="nav__box">
+            <a class="nav__link" href="">スタッフ一覧</a>
+        </div>
+        <div class="nav__box">
+            <a class="nav__link" href="">申請一覧</a>
+        </div>
+        <div class="nav__box">
+            <form action="{{ route('admin.logout') }}" method="post">
             @csrf
                 <button class="logout__link--button">ログアウト</button>  
             </form>

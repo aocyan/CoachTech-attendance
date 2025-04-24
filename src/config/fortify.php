@@ -18,6 +18,14 @@ return [
 
     'guard' => 'web',
 
+    'guards' => [
+        'admin' => [
+            'guard' => 'admin',
+            'prefix' => 'admin',
+            'middleware' => ['web'],
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Fortify Password Broker

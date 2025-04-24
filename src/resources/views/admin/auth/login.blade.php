@@ -8,8 +8,8 @@
 <div class="header__logo">
     <h1>管理者ログイン<h1>
 </div>
-{{--<form action="{{ route('admin.store') }}" method="post">
-@csrf--}}
+<form action="{{ route('admin.login') }}" method="post">
+@csrf
     <div class="form__container">
         <p>メールアドレス</p>
         <input class="form--text" type="email" name="email" />
@@ -31,5 +31,5 @@
     <div class="form__button">
         <button class="form__button--submit" type="submit">管理者ログインする</button>
     </div>
-{{--</form>--}}
+</form>
 @endsection

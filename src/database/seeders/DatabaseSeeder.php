@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\Attendance;
 use App\Models\Interval;
@@ -10,8 +11,13 @@ use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run(int $userCount = 1, int $attendanceDays = 260): void
+    public function run(int $userCount = 6, int $attendanceDays = 250): void
     {
+        Admin::factory()->create([
+            'email' => 'admin@example.com',
+            'password' => bcrypt('1234abcd'),
+        ]);
+
         User::factory($userCount) -> create() -> each(function ($user) use ($attendanceDays) {
 
             $usedDates = collect();

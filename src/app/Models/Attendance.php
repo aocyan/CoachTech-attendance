@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Attendance;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -230,6 +229,8 @@ class Attendance extends Model
             if (!empty($intervalTotalTimes[$date])) {
                 list($h, $m) = explode(':', $intervalTotalTimes[$date]);
                 $intervalSeconds = ($h * 3600) + ($m * 60);
+            }else{
+                $intervalSeconds = 0;
             }
 
             $actualSeconds = max($workingSeconds - $intervalSeconds, 0);
@@ -245,26 +246,26 @@ class Attendance extends Model
         ];
     }
 
-    public static function detailData($id)
+    public static function detailData($date)
     {
         $user = Auth::user();
 
-        $correction = Correction::where('user_id', $user->id)
-            ->whereDate('date', $id)
-            ->latest()
-            ->first();
+        $correction = Correction::where('user_id', $user -> id)
+            -> whereDate('date', $date)
+            -> latest()
+            -> first();
 
-        $attendance = Attendance::where('user_id', $user->id)
-            ->whereDate('clock_in_at', $id)
-            ->first();
+        $attendance = Attendance::where('user_id', $user -> id)
+            -> whereDate('clock_in_at', $date)
+            -> first();
 
         if ($correction) {
             $attendance = new Attendance();
-            $attendance->clock_in_at = $correction->clock_in_at;
-            $attendance->clock_out_at = $correction->clock_out_at;
-            $attendance->exists = false;
+            $attendance -> clock_in_at = $correction -> clock_in_at;
+            $attendance -> clock_out_at = $correction -> clock_out_at;
+            $attendance -> exists = false;
 
-            $intervals = Leave::where('correction_id', $correction->id)->get();
+            $intervals = Leave::where('correction_id', $correction -> id) -> get();
 
             return [
                 'user' => $user,

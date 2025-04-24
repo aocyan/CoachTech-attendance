@@ -2,22 +2,95 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function login()
+    public function index(Request $request)
 	{
-		return view('admin.auth.login');
-	}
-    
-    public function index()
-	{
-		return view('admin.index');
+		$date = Admin::indexToRedirectCorrection(
+        	$request -> query('year'),
+        	$request -> query('month'),
+        	$request -> query('day'),
+        	$request -> query('date') ,
+    	);
+
+		$users = User::all();
+    	$indexTime = Admin::indexTime($date['year'], $date['month'], $date['day']);
+    	$clockTimes = Admin::getMonthClockTime($date['year'], $date['month'], $date['day']);
+    	$intervalTimes = Admin::getMonthIntervalTotalTime($date['year'], $date['month'], $date['day']);
+    	$workingTimes = Admin::workingTotalTime($date['year'], $date['month'], $date['day']);
+
+		return view('admin.index', [
+			'users' => $users,
+			'userDataDate' => $indexTime['userDataDate'],
+        	'formatDate' => $indexTime['formatDate'],
+        	'prevDate' => $indexTime['prevDate'],
+        	'nextDate' => $indexTime['nextDate'],
+        	'clockInTimes' => $clockTimes['clockInTimes'],
+         	'clockOutTimes' => $clockTimes['clockOutTimes'],
+        	'intervalTotalTimes' => $intervalTimes['intervalTotalTimes'],
+        	'workingTotalTimes' => $workingTimes['workingTotalTimes'],
+    	]);
 	}
 
-    public function detail()
+	public function indexSearch(Request $request)
 	{
-		return view('admin.detail');
+		$searchDate = $request->input('search_name');
+
+		$date = \Carbon\Carbon::createFromFormat('Y-m-d', $searchDate);
+    	$year = $date->year;
+    	$month = $date->month;
+    	$day = $date->day;
+
+		$users = User::all();
+		$indexTime = Admin::indexTime($year, $month, $day);
+		$clockTimes = Admin::getMonthClockTime($year, $month, $day);
+    	$intervalTimes = Admin::getMonthIntervalTotalTime($year, $month, $day);
+    	$workingTimes = Admin::workingTotalTime($year, $month, $day);
+
+		return view('admin.index', [
+			'users' => $users,
+			'userDataDate' => $indexTime['userDataDate'],
+        	'formatDate' => $indexTime['formatDate'],
+        	'prevDate' => $indexTime['prevDate'],
+        	'nextDate' => $indexTime['nextDate'],
+        	'clockInTimes' => $clockTimes['clockInTimes'],
+        	'clockOutTimes' => $clockTimes['clockOutTimes'],
+        	'intervalTotalTimes' => $intervalTimes['intervalTotalTimes'],
+        	'workingTotalTimes' => $workingTimes['workingTotalTimes'],
+    	]);
+	}
+
+	public function admin(Request $request, $id)
+	{
+    	$date = $request->query('date');
+    
+		$userId = $id;
+    	$detailData = Admin::detailData($userId, $date);
+
+    	return view('admin.detail', [
+			'id' => $userId,
+        	'user' => $detailData['user'],
+        	'date' => $detailData['date'],
+        	'attendance' => $detailData['attendance'],
+        	'intervals' => $detailData['intervals'],
+    	]);
+	}
+
+	public function correction(Request $request, $id)
+	{
+		$date = $request->query('date');
+
+		$userId = $id;
+ 
+		Admin::newData($userId, $date,$request);
+		Admin::updateData($userId, $date,$request);
+
+		return redirect() -> route('admin.attendance.list', [
+    		'date' => $date,
+		]);
 	}
 }

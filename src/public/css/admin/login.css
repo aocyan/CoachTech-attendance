@@ -1,7 +1,7 @@
 .header__logo {
     font-size: 2vw;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 .form__container {
@@ -28,8 +28,8 @@
 }
 
 .form__button {
-    margin-top: 35px;
-    margin-bottom: 40px;
+    margin-top: 70px;
+    margin-bottom: 60px;
     text-align: center;
 }
 
