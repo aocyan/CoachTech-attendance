@@ -15,22 +15,22 @@
         <tr>
             <th class="table__th--text">名前</th>
             <td>
-                <input class="name__td--text" type="text" name="name" value="{{ $user->name }}" readonly />
+                <input class="name__td--text" type="text" name="name" value="{{ $user -> name }}" readonly />
             </td>
         </tr>
         <tr>
             <th class="table__th--text">日付</th>
             <td>
-                <input class="year__td--text" type="text" name="year" value="{{ \Carbon\Carbon::parse($date)->format('Y年') }}" readonly />
-                <input class="date__td--text" type="text" name="date" value="{{ \Carbon\Carbon::parse($date)->format('n月j日') }}" readonly />
+                <input class="year__td--text" type="text" name="year" value="{{ \Carbon\Carbon::parse($date) -> format('Y年') }}" readonly />
+                <input class="date__td--text" type="text" name="date" value="{{ \Carbon\Carbon::parse($date) -> format('n月j日') }}" readonly />
             </td>
         </tr>
         <tr>
             <th class="table__th--text">出勤・退勤</th>
             <td>
-                <input class="clock-start__td--text" type="text" name="clock_in" value="{{ optional($attendance->clock_in_at)->format('H:i') }}" placeholder="08:00" />
+                <input class="clock-start__td--text" type="text" name="clock_in" value="{{ optional($attendance->clock_in_at) -> format('H:i') }}" placeholder="08:00" />
                 <span class="clock__mark">～</span>
-                <input class="clock-end__td--text" type="text" name="clock_out" value="{{ optional($attendance->clock_out_at)->format('H:i') }}" />
+                <input class="clock-end__td--text" type="text" name="clock_out" value="{{ optional($attendance->clock_out_at) -> format('H:i') }}" />
             </td>
         </tr>
         @if ($intervals -> isEmpty())
@@ -66,10 +66,10 @@
                 </th>
                 <td>
                     <input class="clock-start__td--text" type="text" name="interval_in[]" 
-                    value="{{ optional($interval->interval_in_at)->format('H:i') }}" 
+                    value="{{ optional($interval -> interval_in_at) -> format('H:i') }}" 
                     placeholder="09:30" />
                     <span class="clock__mark">～</span> 
-                    <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ optional($interval->interval_out_at)->format('H:i') }}" /><br>
+                    <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ optional($interval -> interval_out_at) -> format('H:i') }}" /><br>
                 </td>
             </tr>
             @endforeach

@@ -173,10 +173,13 @@ class Interval extends Model
         $formattedTotals = [];
 
         foreach ($intervalTotals as $date => $totalSeconds) {
-            $hours = floor($totalSeconds / 3600);
-            $minutes = floor(($totalSeconds % 3600) / 60);
-
-            $formattedTotals[$date] = sprintf('%d:%02d', $hours, $minutes);
+            if ($totalSeconds === 0) {
+                $formattedTotals[$date] = null;
+            } else {
+                $hours = floor($totalSeconds / 3600);
+                $minutes = floor(($totalSeconds % 3600) / 60);
+                $formattedTotals[$date] = sprintf('%d:%02d', $hours, $minutes);
+            }
         }
 
         return [

@@ -101,6 +101,11 @@ class Attendance extends Model
             -> whereNull('clock_in_at')
             -> first();
 
+        if (!$attendance) {
+            $attendance = new Attendance();
+            $attendance -> user_id = $user -> id;
+        }
+
         $attendance -> clock_in_at = now();
         $attendance -> save();
     }
