@@ -74,14 +74,21 @@ class Correction extends Model
         return $correction;
     }
 
-    public function apply()
+    public function userApply()
     {
         $user = Auth::user();
 
-        return self::where('user_id', $user->id) -> get();
+        return Correction::where('user_id', $user -> id) -> get();
     }
 
-    public static function search($request)
+    public function adminApply()
+    {
+        $usersId = User::pluck('id');
+        
+        return Correction::whereIn('user_id', $usersId) -> get();
+    }
+
+    public static function userSearch($request)
     {
         $user = Auth::user();
 
@@ -95,6 +102,25 @@ class Correction extends Model
                                 -> get();
         } else {
             $corrections = Correction::where('user_id', $user->id) -> get();
+        }
+
+        return $corrections;
+    }
+
+    public static function adminSearch($request)
+    {
+        $usersId = User::pluck('id');
+
+        if ($request -> has('status') && $request -> status === 'approved') {
+            $corrections = Correction::whereIn('user_id', $usersId)
+                                -> where('status', 'approved')
+                                -> get();
+        } elseif ($request -> has('status') && $request -> status === 'unapproved') {
+            $corrections = Correction::whereIn('user_id', $usersId)
+                                -> where('status', 'unapproved')
+                                -> get();
+        } else {
+            $corrections = Correction::whereIn('user_id', $usersId) -> get();
         }
 
         return $corrections;

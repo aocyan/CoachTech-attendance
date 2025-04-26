@@ -117,11 +117,17 @@ class UserController extends Controller
 
     public function apply(Request $request)
 	{
-		$user = Auth::user();
+		if( Auth::guard('web')->check() ){
+			$user = Auth::user();
+			$corrections = Correction::userApply($user -> id);
+			$searches = Correction::userSearch($request,$user -> id);
 
-		$corrections = Correction::apply($user -> id);
+		}elseif( Auth::guard('admin')->check() ){
 
-		$searches = Correction::search($request,$user -> id);
+			$corrections = Correction::adminApply();
+			$searches = Correction::adminSearch( $request );
+
+		}
 
 		return view('user.apply', compact('corrections','searches'));
 	}

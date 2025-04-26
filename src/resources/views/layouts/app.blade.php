@@ -44,7 +44,7 @@
             <a class="nav__link" href="{{ route('staff.index') }}">スタッフ一覧</a>
         </div>
         <div class="nav__box">
-            <a class="nav__link" href="">申請一覧</a>
+            <a class="nav__link" href="{{ route('user.apply') }}">申請一覧</a>
         </div>
         <div class="nav__box">
             <form action="{{ route('admin.logout') }}" method="post">

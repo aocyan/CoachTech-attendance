@@ -36,10 +36,10 @@
         <th class="table__th--text">申請日時</th>
         <th class="table__th--text">詳細</th>
     </tr>
-    <tr>
     @foreach ($searches as $correction)
+    <tr>
         <td class="{{ $loop -> last ? 'last-row__left' : '' }}">
-            <input class="table__td--text" type="text" value="承認待ち" readonly />
+            <input class="table__td--text" type="text" value="{{ $correction -> status === 'approved' ? '承認済み' : '承認待ち' }}" readonly />
         </td>
         <td>
             <input class="table__td--text" type="text" value="{{ $correction -> name }}" readonly />
@@ -53,10 +53,17 @@
         <td>
             <input class="table__td--text" type="text" type="text" value="{{ $correction->created_at -> format('Y/m/d') }}" readonly />
         </td>
+        @if( Auth::guard('web')->check() )
         <td class="{{ $loop->last ? 'last-row__right' : '' }}">
             <a class="table__link--button" href="{{ route('user.detail', ['id' => $correction -> user_id, 'date' => \Carbon\Carbon::parse($correction -> date) -> format('Y-m-d')]) }}">詳細ページへ</a>
         </td>
+        @elseif( Auth::guard('admin')->check() )
+        <td class="{{ $loop->last ? 'last-row__right' : '' }}">
+            <a class="table__link--button" href="{{ route('user.detail', ['id' => $correction -> user_id, 'date' => \Carbon\Carbon::parse($correction -> date) -> format('Y-m-d')]) }}">詳細ページへ</a>
+        </td>
+        @endif
     </tr>
     @endforeach
 </table>
+
 @endsection
