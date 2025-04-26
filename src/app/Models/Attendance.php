@@ -268,6 +268,16 @@ class Attendance extends Model
             -> latest()
             -> first();
 
+        if (Auth::guard('admin') -> check() && $attendance) {
+            return [
+                'user' => $user,
+                'attendance' => $attendance,
+                'intervals' => $attendance->intervals,
+                'correctionMode' => false,
+                'targetDate' => $targetDate,
+            ];
+        }
+
         if ($correction) {
             $attendance = new Attendance();
             $attendance -> clock_in_at = $correction -> clock_in_at;
