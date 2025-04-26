@@ -6,7 +6,7 @@
 
 @section('content')
 
-@if(Auth::guard('web')->check())
+@if( Auth::guard('web') -> check() )
 <div class="header__logo">
     <h1>┃ 勤務詳細</h1>
 </div>
@@ -35,7 +35,7 @@
                 <input class="clock-end__td--text" type="text" name="clock_out" value="{{ $attendance -> clock_out_at ? $attendance -> clock_out_at -> format('H:i') : '' }}" />
             </td>
         </tr>
-        @if ($intervals -> isEmpty())
+        @if ( $intervals -> isEmpty() )
             <tr>
                 <th class="table__th--text">休憩1</th>
                 <td>          
@@ -61,10 +61,10 @@
                 </td>
             </tr>
         @else         
-            @for ($i = 0; $i < count($intervals) + 1; $i++)
+            @for ( $i = 0; $i < count($intervals) + 1; $i++ )
             <tr>
                 <th class="table__th--text">         
-                    @if ($i === 0 && count($intervals) === 0)
+                    @if ( $i === 0 && count($intervals) === 0 )
                         休憩
                     @else
                         休憩{{ $i + 1 }}
@@ -85,7 +85,7 @@
             <td><textarea class="table__comment--text" name="comment"></textarea></td>
         </tr>
     </table>
-    @if ($correctionMode)
+    @if ( $correctionMode )
         <p class="unapproved--text">※　承認待ちのため修正はできません</p>
     @else
     <div class="correction__link">
@@ -95,7 +95,7 @@
 </form>
 @endif
 
-@if(Auth::guard('admin')->check())
+@if( Auth::guard('admin') -> check() )
 <div class="header__logo">
     <h1>┃ 勤務詳細</h1>
 </div>
@@ -124,7 +124,7 @@
                 <input class="clock-end__td--text" type="text" name="clock_out" value="{{ $attendance -> clock_out_at ? $attendance -> clock_out_at -> format('H:i') : '' }}" />
             </td>
         </tr>
-        @if ($intervals -> isEmpty())
+        @if ( $intervals -> isEmpty() )
             <tr>
                 <th class="table__th--text">休憩1</th>
                 <td>          
@@ -150,7 +150,7 @@
                 </td>
             </tr>
         @else         
-            @foreach ($intervals as $index => $interval)
+            @foreach ( $intervals as $index => $interval )
             <tr>
                 <th class="table__th--text">         
                     休憩{{ $index + 1 }}
@@ -165,7 +165,7 @@
             </tr>
             @endforeach
             <tr>
-                <th class="table__th--text">休憩{{ count($intervals) + 1 }}</th>
+                <th class="table__th--text">休憩{{ count( $intervals ) + 1 }}</th>
                 <td>
                     <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
                     <span class="clock__mark">～</span>

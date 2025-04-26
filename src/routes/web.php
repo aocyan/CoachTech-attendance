@@ -32,7 +32,7 @@ Route::middleware('auth') -> group(function () {
     Route::post('/stamp_correction_request/list/search', [UserController::class, 'apply']) -> name('user.search');
 });
 
- Route::get('/attendance/{id}', [UserController::class, 'detail'])->name('user.detail');
+Route::get('/attendance/{id}', [UserController::class, 'detail'])->name('user.detail');
 
 Route::prefix('admin') -> name('admin.')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -53,7 +53,8 @@ Route::post('/attendance/admin/correction/{id}', [AdminController::class, 'corre
 
 
 Route::get('/admin/staff/list', [StaffController::class, 'index'])->name('staff.index');
-//Route::get('/admin/attendance/staff/detail', [StaffController::class, 'attendList'])->name('staff.attendList');
+Route::get('/admin/attendance/staff/{id}', [StaffController::class, 'attendList'])->name('staff.attendance');
+Route::get('/admin/attendance/staff/{id}/csv', [StaffController::class, 'csv'])->name('staff.attendance.csv');
 
 
 

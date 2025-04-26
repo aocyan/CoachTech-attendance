@@ -24,7 +24,7 @@
             <input class="table__td--text" type="text" value="{{ $staff -> email }}" readonly />
         </td>
         <td class="{{ $loop->last ? 'last-row__right' : '' }}">
-            <a class="table__link--button" href="">月次勤務ページへ</a>
+            <a class="table__link--button" href="{{ route('staff.attendance', ['id' => $staff->id]) }}?year={{ \Carbon\Carbon::now() -> year }}&month={{ \Carbon\Carbon::now() -> month }}">月次勤務ページへ</a>
         </td>
     </tr>
     @endforeach

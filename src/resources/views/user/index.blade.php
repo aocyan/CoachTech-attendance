@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="header__logo">
-    <h1>┃ 勤怠一覧</h1>
+    <h1>┃ 勤務一覧</h1>
 </div>
 <nav>
     <div class="nav-calendar__container">
