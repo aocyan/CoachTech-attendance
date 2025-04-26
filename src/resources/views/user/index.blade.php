@@ -51,7 +51,7 @@
             <input class="table__td--text" type="text" type="text" value="{{ $workingTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <a class="table__link--button" href="{{ route('user.detail', ['id' => $day['date'] -> format('Y-m-d')]) }}">詳細ページへ</a>
+            <a class="table__link--button" href="{{ route('user.detail', ['id' => Auth::id()]) }}?date={{ $day['date'] -> format('Y-m-d') }}">詳細ページへ</a>
         </td>
     </tr>
     @endforeach

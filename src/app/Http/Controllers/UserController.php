@@ -73,8 +73,8 @@ class UserController extends Controller
 
     public function index(Request $request)
 	{
-    	$year = $request->query('year', now() -> year);
-    	$month = $request->query('month', now() -> month);
+    	$year = $request -> query('year', now() -> year);
+    	$month = $request -> query('month', now() -> month);
 		$indexTime = Attendance::indexTime($year, $month);
 
 		$MonthClockInTime = Attendance::getMonthClockTime(Auth::user(), $year, $month);
@@ -92,21 +92,24 @@ class UserController extends Controller
 
     public function detail($id)
 	{
-		$date = $id;
-		$detailData = Attendance::detailData($date);
+		$user = User::findOrFail($id);
+		$detailData = Attendance::detailData($user -> id);
 
     	return view('user.detail', [
-        	'user' => $detailData['user'],
+        	'user' => $user,
         	'attendance' => $detailData['attendance'],
 			'intervals' => $detailData['intervals'],
 			'correctionMode' => $detailData['correctionMode'],
 			'id' => $id,
+			'targetDate' => $detailData['targetDate'],
     	]);
 	}
 
 	public function correction(Request $request,$id)
 	{
-		$correction = Correction::store($request,$id);
+		$date = $request -> input('date_data');
+
+		$correction = Correction::store($request,$id,$date);
 		Leave::store($request,$correction);
 
 		return redirect() -> route('user.apply');
@@ -114,8 +117,11 @@ class UserController extends Controller
 
     public function apply(Request $request)
 	{
-		$corrections = Correction::apply();
-		$searches = Correction::search($request);
+		$user = Auth::user();
+
+		$corrections = Correction::apply($user -> id);
+
+		$searches = Correction::search($request,$user -> id);
 
 		return view('user.apply', compact('corrections','searches'));
 	}

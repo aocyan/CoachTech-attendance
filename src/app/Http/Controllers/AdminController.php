@@ -38,7 +38,7 @@ class AdminController extends Controller
 
 	public function indexSearch(Request $request)
 	{
-		$searchDate = $request->input('search_name');
+		$searchDate = $request -> input('search_name');
 
 		$date = \Carbon\Carbon::createFromFormat('Y-m-d', $searchDate);
     	$year = $date->year;
@@ -64,25 +64,9 @@ class AdminController extends Controller
     	]);
 	}
 
-	public function admin(Request $request, $id)
-	{
-    	$date = $request->query('date');
-    
-		$userId = $id;
-    	$detailData = Admin::detailData($userId, $date);
-
-    	return view('admin.detail', [
-			'id' => $userId,
-        	'user' => $detailData['user'],
-        	'date' => $detailData['date'],
-        	'attendance' => $detailData['attendance'],
-        	'intervals' => $detailData['intervals'],
-    	]);
-	}
-
 	public function correction(Request $request, $id)
 	{
-		$date = $request->query('date');
+		$date = $request -> input('date_data');
 
 		$userId = $id;
  

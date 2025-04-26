@@ -27,11 +27,12 @@ Route::middleware('auth') -> group(function () {
     Route::post('/attendance/interval/in', [UserController::class, 'intervalIn']) -> name('user.intervalIn');
     Route::post('/attendance/interval/out', [UserController::class, 'intervalOut']) -> name('user.intervalOut');
     Route::get('/attendance/list', [UserController::class, 'index']) -> name('user.index');
-    Route::get('/attendance/{id}', [UserController::class, 'detail'])->name('user.detail');
     Route::post('/attendance/correction/{id}', [UserController::class, 'correction']) -> name('user.correction');
     Route::get('/stamp_correction_request/list', [UserController::class, 'apply']) -> name('user.apply');
     Route::post('/stamp_correction_request/list/search', [UserController::class, 'apply']) -> name('user.search');
 });
+
+ Route::get('/attendance/{id}', [UserController::class, 'detail'])->name('user.detail');
 
 Route::prefix('admin') -> name('admin.')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -47,14 +48,12 @@ Route::prefix('admin') -> name('admin.')->group(function () {
         -> middleware('auth:admin')
         -> name('attendance.list');
 });
-
 Route::post('/attendance/list/search', [AdminController::class, 'indexSearch']) -> name('admin.index.search');
-Route::get('/admin/attendance/{id}', [AdminController::class, 'admin']) -> name('admin.detail');
 Route::post('/attendance/admin/correction/{id}', [AdminController::class, 'correction']) -> name('admin.correction');
 
 
-//Route::get('/admin/staff/list', [StaffController::class, 'staff'])->name('staff.index');
-//::get('/admin/attendance/staff/detail', [StaffController::class, 'attendList'])->name('staff.attendList');
+Route::get('/admin/staff/list', [StaffController::class, 'index'])->name('staff.index');
+//Route::get('/admin/attendance/staff/detail', [StaffController::class, 'attendList'])->name('staff.attendList');
 
 
 

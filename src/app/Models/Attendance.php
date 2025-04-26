@@ -251,17 +251,21 @@ class Attendance extends Model
         ];
     }
 
-    public static function detailData($date)
+    public static function detailData($userId)
     {
-        $user = Auth::user();
+        $user = User::findOrFail($userId);
 
-        $correction = Correction::where('user_id', $user -> id)
-            -> whereDate('date', $date)
-            -> latest()
+        $targetDate = request()
+            -> query('date') ?? now()
+            -> format('Y-m-d');
+
+        $attendance = Attendance::where('user_id', $user->id)
+            -> whereDate('clock_in_at', $targetDate)
             -> first();
 
-        $attendance = Attendance::where('user_id', $user -> id)
-            -> whereDate('clock_in_at', $date)
+        $correction = Correction::where('user_id', $user -> id)
+            -> whereDate('clock_in_at', $targetDate)
+            -> latest()
             -> first();
 
         if ($correction) {
@@ -277,6 +281,7 @@ class Attendance extends Model
                 'attendance' => $attendance,
                 'intervals' => $intervals,
                 'correctionMode' => true,
+                'targetDate' => $targetDate,
             ];
         }
 
@@ -296,6 +301,7 @@ class Attendance extends Model
             'attendance' => $attendance,
             'intervals' => $intervals,
             'correctionMode' => false,
+            'targetDate' => $targetDate,
         ];
     }
 }

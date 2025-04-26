@@ -94,6 +94,7 @@ th:last-child {
     width: 15%;
     font-size: 1.5vw;
     border-bottom: 5px solid #F0EFF2;
+    color: #848484;
 }
 
 tr {
@@ -108,6 +109,7 @@ tr {
     font-size: 1.5vw;
     border: none;
     text-align: center;
+    color: #848484;
     outline: none;
 }
 

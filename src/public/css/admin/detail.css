@@ -22,7 +22,7 @@ tr {
     padding: 10px 0 10px 0;
     width: 20%;
     font-size: 1.5vw;
-    color: #c0bdc6;
+    color: #848484;
 }
 
 .name__td--text {
@@ -133,6 +133,8 @@ tr {
     text-align: center;
     transform: translateY(-20%);
 }
+
+
 
 .correction__link--button {
     padding: 10px;

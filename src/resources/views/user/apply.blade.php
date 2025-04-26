@@ -53,8 +53,8 @@
         <td>
             <input class="table__td--text" type="text" type="text" value="{{ $correction->created_at -> format('Y/m/d') }}" readonly />
         </td>
-        <td>
-            <a class="table__link--button" href="{{ route('user.detail', ['id' => \Carbon\Carbon::parse($correction->date) -> format('Y-m-d')]) }}">詳細ページへ</a>
+        <td class="{{ $loop->last ? 'last-row__right' : '' }}">
+            <a class="table__link--button" href="{{ route('user.detail', ['id' => $correction -> user_id, 'date' => \Carbon\Carbon::parse($correction -> date) -> format('Y-m-d')]) }}">詳細ページへ</a>
         </td>
     </tr>
     @endforeach

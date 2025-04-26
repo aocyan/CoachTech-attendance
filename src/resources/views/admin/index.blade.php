@@ -19,7 +19,7 @@
                 class="hidden__date--text" 
                 id="dateInput" type="date" 
                 name="search_name" 
-                value="{{ \Carbon\Carbon::createFromFormat('Y/m/d', $formatDate)->format('Y-m-d') }}" 
+                value="{{ \Carbon\Carbon::createFromFormat('Y/m/d', $formatDate) -> format('Y-m-d') }}" 
                 onchange="document.getElementById('searchForm').submit();" 
             />
             <img class="nav__calendar--img" id="calendarIcon" src="{{ asset('storage/item/calendar.png') }}" alt="カレンダーアイコン"  />
@@ -43,25 +43,24 @@
     </tr>
     @foreach ($users as $user)
         <input type="hidden"name="date" value="{{ $formatDate  }}" />
-    @csrf
     <tr>
         <td class="{{ $loop -> last ? 'last-row__left' : '' }}">
-            <input class="table__td--text" type="text" value="{{ $user->name }}" readonly />
+            <input class="table__td--text" type="text" value="{{ $user -> name }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" value="{{ $clockInTimes[$userDataDate][$user->id] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" value="{{ $clockInTimes[$userDataDate][$user -> id] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" value="{{ $clockOutTimes[$userDataDate][$user->id] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" value="{{ $clockOutTimes[$userDataDate][$user -> id] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" value="{{ $intervalTotalTimes[$userDataDate][$user->id] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" value="{{ $intervalTotalTimes[$userDataDate][$user -> id] ?? '' }}" readonly />
         </td>
         <td>
-            <input class="table__td--text" type="text" type="text" value="{{ $workingTotalTimes[$userDataDate][$user->id] ?? '' }}" readonly />
+            <input class="table__td--text" type="text" type="text" value="{{ $workingTotalTimes[$userDataDate][$user -> id] ?? '' }}" readonly />
         </td>
-        <td>
-            <a class="table__link--button" href="{{ route('admin.detail', ['id' => $user->id]) }}?date={{ $userDataDate }}">詳細ページへ</a>
+        <td class="{{ $loop->last ? 'last-row__right' : '' }}">
+            <a class="table__link--button" href="{{ route('user.detail', ['id' => $user -> id]) }}?date={{ $userDataDate }}">詳細ページへ</a>
         </td>
     </tr>
     @endforeach

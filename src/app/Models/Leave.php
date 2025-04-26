@@ -28,8 +28,8 @@ class Leave extends Model
 
     public static function store($request, $correction)
     {
-        $intervalIns = $request->input('interval_in', []);
-        $intervalOuts = $request->input('interval_out', []);
+        $intervalIns = $request -> input('interval_in', []);
+        $intervalOuts = $request -> input('interval_out', []);
         
         $date = $correction -> date;
 
@@ -45,10 +45,10 @@ class Leave extends Model
             }
 
             $leave = new Leave();
-            $leave->correction_id = $correction->id;
-            $leave->interval_in_at = $in ? Carbon::parse($date . ' ' . $in) : null;
-            $leave->interval_out_at = $out ? Carbon::parse($date . ' ' . $out) : null;
-            $leave->save();
+            $leave -> correction_id = $correction->id;
+            $leave -> interval_in_at = $in ? Carbon::parse($date . ' ' . $in) : null;
+            $leave -> interval_out_at = $out ? Carbon::parse($date . ' ' . $out) : null;
+            $leave -> save();
         }
     }
 }

@@ -43,28 +43,28 @@ class Correction extends Model
         return $this -> hasMany(Leave::class,'correction_id');
     }
 
-    public function store(Request $request, $id)
+    public static function store(Request $request, $userId, $date)
     {
-        $user = Auth::user();
-
-        $startOfDay = Carbon::parse($id)->startOfDay();
-        $endOfDay = Carbon::parse($id)->endOfDay();
+        $user = User::findOrFail($userId);
+        
+        $startOfDay = Carbon::parse($date) -> startOfDay();
+        $endOfDay = Carbon::parse($date) -> endOfDay();
 
         $attendance = Attendance::where('user_id', $user->id)
-            ->whereBetween('clock_in_at', [$startOfDay, $endOfDay])
-            ->first();
+            -> whereBetween('clock_in_at', [$startOfDay, $endOfDay])
+            -> first();
 
-        $clockInTime = $request->input('clock_in');
-        $clockOutTime = $request->input('clock_out');
+        $clockInTime = $request -> input('clock_in');
+        $clockOutTime = $request -> input('clock_out');
 
-        $clockInDate = Carbon::parse($id . ' ' . $clockInTime);
-        $clockOutDate = Carbon::parse($id . ' ' . $clockOutTime);
+        $clockInDate = Carbon::parse($date . ' ' . $clockInTime);
+        $clockOutDate = Carbon::parse($date . ' ' . $clockOutTime);
 
         $correction = new Correction();
-        $correction -> user_id = Auth() -> id();
+        $correction -> user_id = $userId;
         $correction->attendance_id = $attendance ? $attendance->id : null;
         $correction -> name = $request -> input('name');
-        $correction -> date = $id;
+        $correction -> date = $date;
         $correction -> clock_in_at = $clockInDate;
         $correction -> clock_out_at = $clockOutDate;
         $correction -> comment = $request -> input('comment');
@@ -87,12 +87,12 @@ class Correction extends Model
 
         if ($request -> has('status') && $request -> status === 'approved') {
             $corrections = Correction::where('user_id', $user->id)
-                                ->where('status', 'approved')
-                                ->get();
+                                -> where('status', 'approved')
+                                -> get();
         } elseif ($request -> has('status') && $request -> status === 'unapproved') {
             $corrections = Correction::where('user_id', $user->id)
-                                ->where('status', 'unapproved')
-                                ->get();
+                                -> where('status', 'unapproved')
+                                -> get();
         } else {
             $corrections = Correction::where('user_id', $user->id) -> get();
         }

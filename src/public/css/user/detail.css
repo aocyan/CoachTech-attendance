@@ -103,6 +103,15 @@ tr {
     cursor: pointer;
 }
 
+.unapproved--text {
+
+    margin: 50px 0 60px 65%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #9c3333;
+    transform: translateY(-30px);
+}
+
 .link__container {
     margin-top: 40px;
     margin-bottom: 60px;
@@ -128,21 +137,31 @@ tr {
 }
 
 .correction__link {
+    margin-left: 10%;
+    width: 80%;
+    text-align: right;
+}
+
+.correction-admin__link {
     margin-left: 5%;
     width: 25%;
     text-align: center;
     transform: translateY(-20%);
 }
 
-.unapproved--text {
-    margin-left: 15%;
+.correction__link--button {
+    margin: 40px 0 60px 0;
+    padding: 10px;
+    width: 15%;
     font-size: 1.5vw;
     font-weight: bold;
-    color: #9c3333;
-    transform: translateY(-30px);
+    color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-.correction__link--button {
+.correction-admin__link--button {
     padding: 10px;
     font-size: 1.5vw;
     font-weight: bold;

@@ -236,33 +236,6 @@ class Admin extends Authenticatable
         ];
     }
 
-    public static function detailData($userId, $date)
-    {
-        $user = User::findOrFail($userId);
-
-        $attendance = Attendance::where('user_id', $user -> id)
-            -> whereDate('clock_in_at', $date)
-            -> first();
-
-        if (is_null($attendance)) {
-            $attendance = new Attendance([
-                'clock_in_at' => null,
-                'clock_out_at' => null,
-            ]);
-
-            $intervals = collect();
-        } else {
-            $intervals = $attendance -> intervals;
-        }
-
-        return [
-            'user' => $user,
-            'attendance' => $attendance,
-            'intervals' => $intervals,
-            'date' => $date,
-        ];
-    }
-
     public static function updateData($userId, $date, $request)
     {
 
