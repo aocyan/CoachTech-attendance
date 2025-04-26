@@ -87,10 +87,11 @@
     </table>
     @if ($correctionMode)
         <p class="unapproved--text">※　承認待ちのため修正はできません</p>
-    @endif
+    @else
     <div class="correction__link">
         <button class="correction__link--button" name="submit">修正</button>
     </div>
+    @endif
 </form>
 @endif
 
