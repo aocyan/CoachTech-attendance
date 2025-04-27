@@ -16,6 +16,7 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('date')->nullable();;
             $table->timestamp('clock_in_at')->nullable();
             $table->timestamp('clock_out_at')->nullable();
             $table->timestamps();

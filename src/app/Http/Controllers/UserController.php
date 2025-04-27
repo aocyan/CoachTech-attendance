@@ -35,8 +35,8 @@ class UserController extends Controller
 		$attendanceData = Attendance::statusAttend();
 		$intervalData = Interval::statusInterval();
 
-		if ($attendanceData->updated_at -> toDateString() !== now()
-        								-> toDateString()) {
+		if ($attendanceData -> updated_at -> toDateString() !== now()
+        								  -> toDateString()) {
 			Attendance::dateChanges();
 		}
 

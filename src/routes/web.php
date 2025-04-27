@@ -55,4 +55,5 @@ Route::post('/attendance/admin/correction/{id}', [AdminController::class, 'corre
 Route::get('/admin/staff/list', [StaffController::class, 'index'])->name('staff.index');
 Route::get('/admin/attendance/staff/{id}', [StaffController::class, 'attendList'])->name('staff.attendance');
 Route::get('/admin/attendance/staff/{id}/csv', [StaffController::class, 'csv'])->name('staff.attendance.csv');
-Route::get('/stamp_correction_request/approve/detail', [StaffController::class, 'correction'])->name('admin.correct');
+Route::get('/stamp_correction_request/approve/{attendance_correct_request}', [StaffController::class, 'detail'])->name('staff.detail');
+Route::post('/stamp_correction_request/approve/correction/{attendance_correct_request}', [StaffController::class, 'correction'])->name('staff.correction');

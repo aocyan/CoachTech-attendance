@@ -58,6 +58,7 @@ class Attendance extends Model
 
         $attendance = new Attendance();
         $attendance -> user_id = $user->id;
+        $attendance -> date = null;
         $attendance -> clock_in_at = null;
         $attendance -> clock_out_at = null; 
         $attendance -> save();
@@ -106,6 +107,7 @@ class Attendance extends Model
             $attendance -> user_id = $user -> id;
         }
 
+        $attendance -> date = now() -> toDateString();
         $attendance -> clock_in_at = now();
         $attendance -> save();
     }

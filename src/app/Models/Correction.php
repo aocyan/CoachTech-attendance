@@ -53,6 +53,15 @@ class Correction extends Model
         $attendance = Attendance::where('user_id', $user->id)
             -> whereBetween('clock_in_at', [$startOfDay, $endOfDay])
             -> first();
+        
+        if (!$attendance) {
+            $attendance = new Attendance();
+            $attendance->user_id = $userId;
+            $attendance->date = $date;
+            $attendance->clock_in_at = null;
+            $attendance->clock_out_at = null;
+            $attendance->save();
+        }
 
         $clockInTime = $request -> input('clock_in');
         $clockOutTime = $request -> input('clock_out');
@@ -62,7 +71,7 @@ class Correction extends Model
 
         $correction = new Correction();
         $correction -> user_id = $userId;
-        $correction->attendance_id = $attendance ? $attendance->id : null;
+        $correction->attendance_id = $attendance->id;
         $correction -> name = $request -> input('name');
         $correction -> date = $date;
         $correction -> clock_in_at = $clockInDate;

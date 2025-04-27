@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Correction;
 use App\Models\Interval;
 use App\Models\Attendance;
 use App\Models\User;
@@ -53,5 +54,27 @@ class StaffController extends Controller
     	$month = $request->query('month', now()->month);
 
     	return Staff::exportMonthCsv($user, $year, $month);
+	}
+
+	public function detail($attendance_correct_request)
+	{
+		$correction = Correction::findOrFail($attendance_correct_request);
+
+		$detailData = Staff::detailData($correction-> id);
+
+		return view('staff.correction', [
+        	'correction' => $correction,
+        	'intervals' => $detailData['intervals'],
+    	]);
+	}
+
+	public function correction($attendance_correct_request)
+	{
+
+		$correction = Correction::findOrFail($attendance_correct_request);
+
+		Staff::attendanceDataUpdate($correction -> id);
+
+		return redirect()->route('staff.detail', ['attendance_correct_request' => $correction->id]);
 	}
 }

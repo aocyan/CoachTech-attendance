@@ -39,7 +39,11 @@
     @foreach ($searches as $correction)
     <tr>
         <td class="{{ $loop -> last ? 'last-row__left' : '' }}">
-            <input class="table__td--text" type="text" value="{{ $correction -> status === 'approved' ? '承認済み' : '承認待ち' }}" readonly />
+            @if( $correction -> status === 'unapproved' )
+                <input class="table__td--text" type="text" value="承認待ち" readonly />
+            @elseif( $correction -> status === 'approved' )
+                <input class="table__td--text" type="text" value="承認済み" readonly />
+            @endif
         </td>
         <td>
             <input class="table__td--text" type="text" value="{{ $correction -> name }}" readonly />
@@ -59,7 +63,7 @@
         </td>
         @elseif( Auth::guard('admin')->check() )
         <td class="{{ $loop->last ? 'last-row__right' : '' }}">
-            <a class="table__link--button" href="{{ route('user.detail', ['id' => $correction -> user_id, 'date' => \Carbon\Carbon::parse($correction -> date) -> format('Y-m-d')]) }}">詳細ページへ</a>
+            <a class="table__link--button" href="{{ route('staff.detail', ['attendance_correct_request' => $correction -> id]) }}">詳細ページへ</a>
         </td>
         @endif
     </tr>
