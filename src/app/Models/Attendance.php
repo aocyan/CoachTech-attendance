@@ -37,6 +37,11 @@ class Attendance extends Model
         return $this -> belongsTo(Correction::class,'attendance_id');
     }
 
+    public function comment()
+    {
+        return $this -> belongsTo(Comment::class,'attendance_id');
+    }
+
     public static function nowDateTime()
     {
         Carbon::setLocale('ja');
@@ -236,7 +241,7 @@ class Attendance extends Model
             if (!empty($intervalTotalTimes[$date])) {
                 list($h, $m) = explode(':', $intervalTotalTimes[$date]);
                 $intervalSeconds = ($h * 3600) + ($m * 60);
-            }else{
+            } else{
                 $intervalSeconds = 0;
             }
 
@@ -275,7 +280,8 @@ class Attendance extends Model
                 'user' => $user,
                 'attendance' => $attendance,
                 'intervals' => $attendance->intervals,
-                'correctionMode' => false,
+                'correction' => optional($correction) -> status,
+                'comment' => optional($correction) -> comment,
                 'targetDate' => $targetDate,
             ];
         }
@@ -292,7 +298,8 @@ class Attendance extends Model
                 'user' => $user,
                 'attendance' => $attendance,
                 'intervals' => $intervals,
-                'correctionMode' => true,
+                'correction' => optional($correction) -> status,
+                'comment' => optional($correction) -> comment,
                 'targetDate' => $targetDate,
             ];
         }
@@ -302,7 +309,7 @@ class Attendance extends Model
                     'clock_in_at' => null,
                     'clock_out_at' => null,
             ]);
-
+            
             $intervals = collect();
         } else {
             $intervals = $attendance -> intervals;
@@ -312,7 +319,8 @@ class Attendance extends Model
             'user' => $user,
             'attendance' => $attendance,
             'intervals' => $intervals,
-            'correctionMode' => false,
+            'correction' => optional($correction) -> status,
+            'comment' => optional($correction) -> comment,
             'targetDate' => $targetDate,
         ];
     }

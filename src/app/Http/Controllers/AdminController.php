@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
@@ -70,11 +71,15 @@ class AdminController extends Controller
 
 		$userId = $id;
  
-		Admin::newData($userId, $date,$request);
-		Admin::updateData($userId, $date,$request);
+		$attendance = Admin::newData($userId, $date,$request);
+		$attendance = Admin::updateData($userId, $date,$request);
+
+		$comment = Comment::where('attendance_id', $attendance->id) -> first();
+
+		session(['adminComment' => $comment]);
 
 		return redirect() -> route('admin.attendance.list', [
-    		'date' => $date,
-		]);
+        	'date' => $date,
+    	]);
 	}
 }

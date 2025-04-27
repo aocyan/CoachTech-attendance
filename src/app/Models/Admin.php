@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Interval;
 use App\Models\Attendance;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,11 @@ class Admin extends Authenticatable
         'email', 
         'password',
     ];
+
+    public function comments()
+    {
+        return $this -> hasMany(Comment::class, 'admin_id');
+    }
 
     public static function nowDateTime()
     {
@@ -238,6 +244,7 @@ class Admin extends Authenticatable
 
     public static function updateData($userId, $date, $request)
     {
+        $admin = Auth::guard('admin') -> user();
 
         $attendance = Attendance::where('user_id', $userId)
             -> whereDate('clock_in_at', $date)
@@ -276,11 +283,24 @@ class Admin extends Authenticatable
                     ]);
                 }
             }
+
+            Comment::where('attendance_id', $attendance -> id) -> delete();
+
+            $comment = $request -> input('comment');
+            $adminComment = new Comment();
+            $adminComment -> admin_id = $admin -> id;
+            $adminComment -> attendance_id = $attendance -> id;
+            $adminComment -> comment = $comment; 
+            $adminComment -> save();
+
+            return $attendance;
         }
 	}
 
     public static function newData($userId, $date, $request)
     {
+        $admin = Auth::guard('admin') -> user();
+
         $attendance = Attendance::where('user_id', $userId)
             -> whereDate('clock_in_at', $date)
             -> first();
@@ -310,7 +330,16 @@ class Admin extends Authenticatable
                         'interval_out_at' => \Carbon\Carbon::parse("$date $outTime"),
                     ]);
                 }
-            } 
+            }
+            
+            $comment = $request -> input('comment');
+            $adminComment = new Comment();
+            $adminComment -> admin_id = $admin -> id;
+            $adminComment -> attendance_id = $attendance -> id;
+            $adminComment -> comment = $comment; 
+            $adminComment -> save();
+
+            return $attendance;
         }
     }
 }

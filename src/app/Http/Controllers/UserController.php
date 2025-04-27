@@ -95,11 +95,18 @@ class UserController extends Controller
 		$user = User::findOrFail($id);
 		$detailData = Attendance::detailData($user -> id);
 
+		$commentRequest = request()->query('comment');
+
+    	if ($commentRequest !== null) {
+        	$detailData['comment'] = urldecode($commentRequest);
+    	}
+
     	return view('user.detail', [
         	'user' => $user,
         	'attendance' => $detailData['attendance'],
 			'intervals' => $detailData['intervals'],
-			'correctionMode' => $detailData['correctionMode'],
+			'correction' => $detailData['correction'],
+			'comment' => $detailData['comment'],
 			'id' => $id,
 			'targetDate' => $detailData['targetDate'],
     	]);
@@ -121,12 +128,9 @@ class UserController extends Controller
 			$user = Auth::user();
 			$corrections = Correction::userApply($user -> id);
 			$searches = Correction::userSearch($request,$user -> id);
-
-		}elseif( Auth::guard('admin')->check() ){
-
+		} elseif( Auth::guard('admin')->check() ){
 			$corrections = Correction::adminApply();
 			$searches = Correction::adminSearch( $request );
-
 		}
 
 		return view('user.apply', compact('corrections','searches'));
