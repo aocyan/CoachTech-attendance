@@ -32,10 +32,10 @@ Route::middleware('auth') -> group(function () {
 });
 
 
-Route::middleware('multiAuth')->group(function () {
+Route::middleware('multiAuth') -> group(function () {
     Route::get('/stamp_correction_request/list', [UserController::class, 'apply']) -> name('user.apply');
     Route::post('/stamp_correction_request/list/search', [UserController::class, 'apply']) -> name('user.search');
-    Route::get('/attendance/{id}', [UserController::class, 'detail'])->name('user.detail');
+    Route::get('/attendance/{id}', [UserController::class, 'detail'] )-> name('user.detail');
 });
 
 
@@ -59,8 +59,8 @@ Route::middleware('auth:admin') -> group(function () {
     Route::post('/attendance/list/search', [AdminController::class, 'indexSearch']) -> name('admin.index.search');
     Route::post('/attendance/admin/correction/{id}', [AdminController::class, 'correction']) -> name('admin.correction');
 
-    Route::get('/admin/attendance/staff/{id}', [StaffController::class, 'attendList'])->name('staff.attendance');
-    Route::get('/admin/attendance/staff/{id}/csv', [StaffController::class, 'csv'])->name('staff.attendance.csv');
-    Route::get('/stamp_correction_request/approve/{attendance_correct_request}', [StaffController::class, 'detail'])->name('staff.detail');
-    Route::post('/stamp_correction_request/approve/correction/{attendance_correct_request}', [StaffController::class, 'correction'])->name('staff.correction');
+    Route::get('/admin/attendance/staff/{id}', [StaffController::class, 'attendList']) -> name('staff.attendance');
+    Route::get('/admin/attendance/staff/{id}/csv', [StaffController::class, 'csv']) -> name('staff.attendance.csv');
+    Route::get('/stamp_correction_request/approve/{attendance_correct_request}', [StaffController::class, 'detail']) -> name('staff.detail');
+    Route::post('/stamp_correction_request/approve/correction/{attendance_correct_request}', [StaffController::class, 'correction']) -> name('staff.correction');
 });

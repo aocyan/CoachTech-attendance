@@ -75,11 +75,11 @@ class UserController extends Controller
 	{
     	$year = $request -> query('year', now() -> year);
     	$month = $request -> query('month', now() -> month);
-		$indexTime = Attendance::indexTime($year, $month);
+		$indexTime = Attendance::indexTime( $year, $month );
 
-		$MonthClockInTime = Attendance::getMonthClockTime(Auth::user(), $year, $month);
-		$intervalTotalTime = Interval::getMonthIntervalTotalTime(Auth::user(), $year, $month);
-		$workingTotalTime = Attendance::workingTotalTime(Auth::user(), $year, $month);
+		$MonthClockInTime = Attendance::getMonthClockTime( Auth::user(), $year, $month );
+		$intervalTotalTime = Interval::getMonthIntervalTotalTime( Auth::user(), $year, $month );
+		$workingTotalTime = Attendance::workingTotalTime( Auth::user(), $year, $month );
 
 		return view('user.index', array_merge(
     		$indexTime,
@@ -98,7 +98,7 @@ class UserController extends Controller
 		$commentRequest = request()->query('comment');
 
     	if ($commentRequest !== null) {
-        	$detailData['comment'] = urldecode($commentRequest);
+        	$detailData['comment'] = urldecode( $commentRequest );
     	}
 
     	return view('user.detail', [

@@ -91,8 +91,8 @@ class Staff extends Model
     public static function attendanceDataUpdate($correctionId) 
     {
         $correction = Correction::findOrFail($correctionId);
-        $userId = $correction->user_id;
-        $date = $correction->date;
+        $userId = $correction -> user_id;
+        $date = $correction -> date;
 
         $attendance = Attendance::where('user_id', $userId)
                         -> where('date', $date)
@@ -128,7 +128,7 @@ class Staff extends Model
 
             } else {
 
-                $interval->delete();
+                $interval -> delete();
 
             }
         }
@@ -137,15 +137,15 @@ class Staff extends Model
             for ($i = count($actualIntervals); $i < count($correctionLeaves); $i++) {
 
                 $newInterval = new Interval();
-                $newInterval->attendance_id = $attendance->id;
-                $newInterval->interval_in_at = $correctionLeaves[$i]->interval_in_at;
-                $newInterval->interval_out_at = $correctionLeaves[$i]->interval_out_at;
-                $newInterval->save();
+                $newInterval -> attendance_id = $attendance -> id;
+                $newInterval -> interval_in_at = $correctionLeaves[$i] -> interval_in_at;
+                $newInterval -> interval_out_at = $correctionLeaves[$i] -> interval_out_at;
+                $newInterval -> save();
 
             }
         }
 
-        $correction->status = 'approved';
-        $correction->save();
+        $correction -> status = 'approved';
+        $correction -> save();
     }
 }

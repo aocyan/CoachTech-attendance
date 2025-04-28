@@ -50,8 +50,8 @@ class StaffController extends Controller
 	{
 		$user = User::findOrFail($id);
 
-		$year = $request->query('year', now()->year);
-    	$month = $request->query('month', now()->month);
+		$year = $request -> query('year', now()->year);
+    	$month = $request -> query('month', now()->month);
 
     	return Staff::exportMonthCsv($user, $year, $month);
 	}
@@ -75,6 +75,6 @@ class StaffController extends Controller
 
 		Staff::attendanceDataUpdate($correction -> id);
 
-		return redirect()->route('staff.detail', ['attendance_correct_request' => $correction->id]);
+		return redirect()->route('staff.detail', [ 'attendance_correct_request' => $correction->id ]);
 	}
 }

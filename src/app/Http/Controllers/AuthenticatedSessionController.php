@@ -21,10 +21,12 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::guard('admin')->attempt($credentials, $request->boolean('remember'))) {
-            $request->session()->regenerate();
+        if (Auth::guard('admin') -> attempt($credentials, $request -> boolean('remember'))) {
+            $request 
+                -> session() 
+                -> regenerate();
 
-            return redirect()->route('admin.attendance.list');
+            return redirect() -> route('admin.attendance.list');
         }
 
         throw ValidationException::withMessages([
@@ -34,10 +36,10 @@ class AuthenticatedSessionController extends Controller
 
     public function destroy(Request $request)
     {
-        Auth::guard('admin')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        Auth::guard('admin') -> logout();
+        $request->session() -> invalidate();
+        $request->session() -> regenerateToken();
 
-        return redirect()->route('admin.login');
+        return redirect() -> route('admin.login');
     }
 }

@@ -76,7 +76,7 @@ class AdminController extends Controller
 
 		$comment = Comment::where('attendance_id', $attendance->id) -> first();
 
-		session(['adminComment' => $comment]);
+		session([ 'adminComment' => $comment ]);
 
 		return redirect() -> route('admin.attendance.list', [
         	'date' => $date,

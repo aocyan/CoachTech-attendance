@@ -56,11 +56,11 @@ class Correction extends Model
         
         if (!$attendance) {
             $attendance = new Attendance();
-            $attendance->user_id = $userId;
-            $attendance->date = $date;
-            $attendance->clock_in_at = null;
-            $attendance->clock_out_at = null;
-            $attendance->save();
+            $attendance -> user_id = $userId;
+            $attendance -> date = $date;
+            $attendance -> clock_in_at = null;
+            $attendance -> clock_out_at = null;
+            $attendance -> save();
         }
 
         $clockInTime = $request -> input('clock_in');
@@ -71,7 +71,7 @@ class Correction extends Model
 
         $correction = new Correction();
         $correction -> user_id = $userId;
-        $correction->attendance_id = $attendance->id;
+        $correction -> attendance_id = $attendance->id;
         $correction -> name = $request -> input('name');
         $correction -> date = $date;
         $correction -> clock_in_at = $clockInDate;

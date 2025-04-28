@@ -127,9 +127,9 @@ class Interval extends Model
     public static function getMonthIntervalTotalTime($user, $year, $month)
     {   
         $attendances = Attendance::where('user_id', $user->id) 
-            -> whereYear('clock_in_at', $year)
-            -> whereMonth('clock_in_at', $month)
-            -> get();
+                        -> whereYear('clock_in_at', $year)
+                        -> whereMonth('clock_in_at', $month)
+                        -> get();
         
         foreach ($attendances as $attendance) {
             $attendance->intervals = $attendance

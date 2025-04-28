@@ -18,21 +18,25 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('1234abcd'),
         ]);
 
-        User::factory($userCount) -> create() -> each(function ($user) use ($attendanceDays) {
+        User::factory($userCount) 
+            -> create() 
+            -> each(function ($user) use ($attendanceDays) {
 
             $usedDates = collect();
 
             for ($i = 0; $i < $attendanceDays; $i++) {
                 do {
-                    $date = now() -> subDays(rand(1, 365)) -> format('Y-m-d');
+                    $date = now() 
+                        -> subDays(rand(1, 365)) 
+                        -> format('Y-m-d');
                 } while ($usedDates -> contains($date));
 
                 $usedDates -> push($date);
 
                 $attendance = Attendance::factory()
-                    ->for($user)
-                    ->forDate($date)
-                    ->create();
+                                -> for($user)
+                                -> forDate($date)
+                                -> create();
 
                 $intervals = Interval::factory() -> forAttendance($attendance);
                 foreach ($intervals as $interval) {

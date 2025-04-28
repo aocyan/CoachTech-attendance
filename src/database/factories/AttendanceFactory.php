@@ -13,11 +13,14 @@ class AttendanceFactory extends Factory
 
     public function definition()
     {
-        $workDate = $this->faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d');
+        $workDate = $this 
+                    -> faker 
+                    -> dateTimeBetween('-1 year', 'now') 
+                    -> format('Y-m-d');
 
         $date = $workDate;
-        $clockIn = Carbon::parse($workDate . ' 08:55:00')->addMinutes(rand(0, 5));
-        $clockOut = Carbon::parse($workDate . ' 18:00:00')->addMinutes(rand(0, 60));
+        $clockIn = Carbon::parse($workDate . ' 08:55:00') -> addMinutes(rand(0, 5));
+        $clockOut = Carbon::parse($workDate . ' 18:00:00') -> addMinutes(rand(0, 60));
 
         return [
             'user_id' => User::factory(),
@@ -28,8 +31,8 @@ class AttendanceFactory extends Factory
 
     public function forDate(string $date)
     {
-        $clockIn = Carbon::parse($date . ' 08:55:00')->addMinutes(rand(0, 5));
-        $clockOut = Carbon::parse($date . ' 18:00:00')->addMinutes(rand(0, 60));
+        $clockIn = Carbon::parse($date . ' 08:55:00') -> addMinutes(rand(0, 5));
+        $clockOut = Carbon::parse($date . ' 18:00:00') -> addMinutes(rand(0, 60));
 
         return $this->state([
             'date' => $date,

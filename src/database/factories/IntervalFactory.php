@@ -37,7 +37,8 @@ class IntervalFactory extends Factory
 
             $intervalMinutes = rand(15, min(30, $remaining));
             $possibleStart = $this
-                -> faker  -> dateTimeBetween($intervalStartLimit, $intervalEndLimit -> copy() -> subMinutes($intervalMinutes));
+                                -> faker  
+                                -> dateTimeBetween($intervalStartLimit, $intervalEndLimit -> copy() -> subMinutes($intervalMinutes));
 
             $intervalIn = Carbon::parse($possibleStart);
             $intervalOut = (clone $intervalIn) -> addMinutes($intervalMinutes);
