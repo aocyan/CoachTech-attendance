@@ -14,13 +14,17 @@ class CreateLeavesTable extends Migration
     public function up()
     {
         Schema::create('leaves', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('correction_id');
-            $table->timestamp('interval_in_at')->nullable();
-            $table->timestamp('interval_out_at')->nullable();
-            $table->timestamps();
+            $table -> id();
+            $table -> unsignedBigInteger('correction_id');
+            $table -> timestamp('interval_in_at')->nullable();
+            $table -> timestamp('interval_out_at')->nullable();
+            $table -> timestamps();
 
-            $table->foreign('correction_id')->references('id')->on('corrections')->onDelete('cascade');
+            $table
+                -> foreign('correction_id')
+                -> references('id')
+                -> on('corrections')
+                -> onDelete('cascade');
         });
     }
 

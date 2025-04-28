@@ -14,14 +14,18 @@ class CreateAttendancesTable extends Migration
     public function up()
     {
         Schema::create('attendances', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('date')->nullable();;
-            $table->timestamp('clock_in_at')->nullable();
-            $table->timestamp('clock_out_at')->nullable();
-            $table->timestamps();
+            $table -> id();
+            $table -> unsignedBigInteger('user_id');
+            $table -> string('date')->nullable();;
+            $table -> timestamp('clock_in_at')->nullable();
+            $table -> timestamp('clock_out_at')->nullable();
+            $table -> timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table
+                -> foreign('user_id')
+                -> references('id')
+                -> on('users')
+                -> onDelete('cascade');
         });
     }
 

@@ -14,13 +14,17 @@ class CreateIntervalsTable extends Migration
     public function up()
     {
         Schema::create('intervals', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('attendance_id');
-            $table->timestamp('interval_in_at')->nullable();
-            $table->timestamp('interval_out_at')->nullable();
-            $table->timestamps();
+            $table -> id();
+            $table -> unsignedBigInteger('attendance_id');
+            $table -> timestamp('interval_in_at')->nullable();
+            $table -> timestamp('interval_out_at')->nullable();
+            $table -> timestamps();
 
-            $table->foreign('attendance_id')->references('id')->on('attendances')->onDelete('cascade');
+            $table
+                -> foreign('attendance_id')
+                -> references('id')
+                -> on('attendances')
+                -> onDelete('cascade');
         });
     }
 
