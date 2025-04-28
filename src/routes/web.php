@@ -17,8 +17,7 @@ use App\Http\Controllers\RequestController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::post('/register', [UserController::class, 'store']) -> name('user.store');
+Route::post('/register/store', [UserController::class, 'store']) -> name('user.store');
 
 Route::middleware('auth') -> group(function () {
     Route::get('/attendance', [UserController::class, 'attend']) -> name('user.attend');
