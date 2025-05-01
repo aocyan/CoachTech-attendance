@@ -60,7 +60,7 @@
             <input class="table__td--text" type="text" type="text" value="{{ $workingTotalTimes[$userDataDate][$user -> id] ?? '' }}" readonly />
         </td>
         <td class="{{ $loop->last ? 'last-row__right' : '' }}">
-            <a class="table__link--button" href="{{ route('user.detail', ['id' => $user -> id]) }}?date={{ $userDataDate }}">詳細ページへ</a>
+            <a class="table__link--button" href="{{ route('user.detail', ['id' => $user->id]) }}?date={{ $userDataDate }}&attendance_id={{ $user->attendance_id }}">詳細ページへ</a>
         </td>
     </tr>
     @endforeach

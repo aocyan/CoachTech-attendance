@@ -27,7 +27,7 @@ class StaffController extends Controller
 		$year = $request -> query('year', now() -> year);
     	$month = $request -> query('month', now() -> month);
 		
-		$indexTime = Attendance::indexTime($year, $month);
+		$indexTime = Attendance::indexTime( $user,$year, $month );
 
 		$MonthClockInTime = Attendance::getMonthClockTime($user, $year, $month);
 		$intervalTotalTime = Interval::getMonthIntervalTotalTime($user, $year, $month);

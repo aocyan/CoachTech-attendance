@@ -75,7 +75,8 @@ class UserController extends Controller
 	{
     	$year = $request -> query('year', now() -> year);
     	$month = $request -> query('month', now() -> month);
-		$indexTime = Attendance::indexTime( $year, $month );
+	
+		$indexTime = Attendance::indexTime( Auth::user(), $year, $month );
 
 		$MonthClockInTime = Attendance::getMonthClockTime( Auth::user(), $year, $month );
 		$intervalTotalTime = Interval::getMonthIntervalTotalTime( Auth::user(), $year, $month );
@@ -90,16 +91,25 @@ class UserController extends Controller
 		));
 	}
 
-    public function detail($id)
+    public function detail(Request $request, $id)
 	{
 		$user = User::findOrFail($id);
-		$detailData = Attendance::detailData($user -> id);
+		$detailData = Attendance::detailData($user -> id,$request);
 
-		$commentRequest = request()->query('comment');
+		$commentRequest = request() -> query('comment');
 
     	if ($commentRequest !== null) {
         	$detailData['comment'] = urldecode( $commentRequest );
     	}
+
+    	if ($detailData['correction'] === 'approved') {
+        	$checkOtherCorrection = Correction::where( 'attendance_id', $detailData['attendance']->id)
+    									-> latest('id')
+    									-> first();
+   	 	} else {
+			$checkOtherCorrection = null;
+		}
+
 
     	return view('user.detail', [
         	'user' => $user,
@@ -109,6 +119,7 @@ class UserController extends Controller
 			'comment' => $detailData['comment'],
 			'id' => $id,
 			'targetDate' => $detailData['targetDate'],
+			'checkOtherCorrection' => $checkOtherCorrection,
     	]);
 	}
 

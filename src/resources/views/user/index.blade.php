@@ -34,6 +34,7 @@
         <th class="table__th--text">詳細</th>
     </tr>
     @foreach ($dates as $day)
+
     <tr>
         <td class="{{ $loop -> last ? 'last-row__left' : '' }}">
             <input class="table__td--text" type="text" value="{{ $day['date'] -> format('m/d') }}（{{ $day['dayWeek'] }}）" readonly />
@@ -51,7 +52,7 @@
             <input class="table__td--text" type="text" type="text" value="{{ $workingTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
         <td>
-            <a class="table__link--button" href="{{ route('user.detail', ['id' => Auth::id()]) }}?date={{ $day['date'] -> format('Y-m-d') }}">詳細ページへ</a>
+             <a class="table__link--button" href="{{ route('user.detail', ['id' => Auth::id()]) }}?date={{ $day['date_format'] }}@if($day['attendance_id'])&attendance_id={{ $day['attendance_id'] }}@endif">詳細ページへ</a>
         </td>
     </tr>
     @endforeach

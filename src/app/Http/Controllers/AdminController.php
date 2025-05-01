@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -18,7 +19,20 @@ class AdminController extends Controller
         	$request -> query('date') ,
     	);
 
+		$targetDate = $date['year'] . '-' . $date['month'] . '-' . $date['day'];
+
+		$attendances = Attendance::whereDate('clock_in_at', $targetDate) -> get();
+
+		$attendanceIds = $attendances -> mapWithKeys(function ($attendance) {
+    		return [$attendance->user_id => $attendance->id];
+		});
+
 		$users = User::all();
+
+		foreach ($users as $user) {
+    		$user->attendance_id = (int)$attendanceIds->get($user->id);
+		}
+
     	$indexTime = Admin::indexTime($date['year'], $date['month'], $date['day']);
     	$clockTimes = Admin::getMonthClockTime($date['year'], $date['month'], $date['day']);
     	$intervalTimes = Admin::getMonthIntervalTotalTime($date['year'], $date['month'], $date['day']);
@@ -34,6 +48,7 @@ class AdminController extends Controller
          	'clockOutTimes' => $clockTimes['clockOutTimes'],
         	'intervalTotalTimes' => $intervalTimes['intervalTotalTimes'],
         	'workingTotalTimes' => $workingTimes['workingTotalTimes'],
+			'attendanceId' => $attendanceIds,
     	]);
 	}
 

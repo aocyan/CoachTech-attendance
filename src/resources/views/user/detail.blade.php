@@ -82,19 +82,22 @@
         @endif
         <tr>
             <th class="table__th--text">備考</th>
-            @if( $correction === 'unapproved' || $correction === null)
                 <td><textarea class="table__comment--text" name="comment">{{ $comment ?? '' }}</textarea></td>
-            @else
-                <td><textarea class="table__comment--text" name="comment"></textarea></td>
-            @endif
         </tr>
     </table>
     @if ( $correction === 'unapproved' )
         <p class="unapproved--text">※　承認待ちのため修正はできません</p>
-    @elseif( $correction === 'approved' || $correction === null )
-    <div class="correction__link">
-        <button class="correction__link--button" name="submit">修正</button>
-    </div>
+    @elseif( $correction === 'approved' && $checkOtherCorrection -> status === 'unapproved' )
+        <p class="unapproved--text">※　承認待ちのため修正はできません</p>
+    @elseif( $correction === 'approved' && $checkOtherCorrection -> status === 'approved' )
+        <div class="again-correction__link">
+            <p class="approved--text">※　管理者が承認済みです</p>
+            <button class="again-correction__link--button">再度修正する</button>
+        </div>
+    @else
+        <div class="correction__link">
+            <button class="correction__link--button" name="submit">修正</button>
+        </div>
     @endif
 </form>
 @endif
@@ -179,7 +182,7 @@
         @endif
         <tr>
             <th class="table__th--text">備考</th>
-            <td><textarea class="table__comment--text" name="comment">{{ session('adminComment') -> comment ?? '' }}</textarea></td>
+            <td><textarea class="table__comment--text" name="comment">{{ $comment ?? '' }}</textarea></td>
         </tr>
     </table>
     <div class="link__container">

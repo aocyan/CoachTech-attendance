@@ -59,8 +59,7 @@
         </td>
         @if( Auth::guard('web')->check() )
         <td class="{{ $loop->last ? 'last-row__right' : '' }}">
-            <a class="table__link--button" href="{{ route('user.detail', ['id' => $correction -> user_id, 'comment' => urlencode($correction -> comment), 'date' => \Carbon\Carbon::parse($correction -> date) -> format('Y-m-d')]) }}">詳細ページへ</a>
-        </td>
+            <a class="table__link--button" href="{{ route('user.detail', ['id' => $correction->user_id, 'correction_id' => $correction->id, 'attendance_id' => $correction->attendance_id, 'date' => \Carbon\Carbon::parse($correction -> date) -> format('Y-m-d')]) }}">詳細ページへ</a>
         @elseif( Auth::guard('admin')->check() )
         <td class="{{ $loop->last ? 'last-row__right' : '' }}">
             <a class="table__link--button" href="{{ route('staff.detail', ['attendance_correct_request' => $correction -> id]) }}">詳細ページへ</a>

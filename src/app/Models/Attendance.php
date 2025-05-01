@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -132,7 +133,7 @@ class Attendance extends Model
         $attendance -> save();
     }
 
-    public static function indexTime($year = null, $month = null)
+    public static function indexTime($user, $year = null, $month = null)
     {
         if (is_null($year) || is_null($month)) {
 
@@ -154,12 +155,25 @@ class Attendance extends Model
 
         $daysInMonth = $displayMonth -> daysInMonth;
 
+        $attendances = Attendance::where('user_id', $user->id)
+                        -> whereYear('date', $year)
+                        -> whereMonth('date', $month)
+                        -> get()
+                        -> keyBy(function ($attendance) {
+                            return Carbon::parse($attendance->date)->format('Y-m-d');
+                        });
+
         $dates = [];
         foreach (range(1, $daysInMonth) as $day) {
             $date = Carbon::createFromDate($year, $month, $day);
+            $dateFormat = $date -> format('Y-m-d');
+            $attendance = $attendances -> get($dateFormat);
+
             $dates[] = [
                 'date' => $date,
                 'dayWeek' => $date->isoFormat('ddd'),
+                'date_format' => $dateFormat,
+                'attendance_id' => optional($attendance) -> id,
             ];
         }
 
@@ -258,22 +272,37 @@ class Attendance extends Model
         ];
     }
 
-    public static function detailData($userId)
+    public static function detailData($userId, $request)
     {
         $user = User::findOrFail($userId);
 
         $targetDate = request()
             -> query('date') ?? now()
             -> format('Y-m-d');
+        
+        $correctionId = $request -> query('correction_id');
+        $attendanceId = $request -> query('attendance_id');
 
-        $attendance = Attendance::where('user_id', $user->id)
+        $attendance = Attendance::where('user_id', $user -> id)
             -> whereDate('clock_in_at', $targetDate)
             -> first();
 
-        $correction = Correction::where('user_id', $user -> id)
-            -> whereDate('clock_in_at', $targetDate)
-            -> latest()
-            -> first();
+        $adminComment = Comment::where('attendance_id', $attendanceId)->first();
+
+        if ($correctionId && $attendanceId) {
+            $correction = Correction::where('id', $correctionId)
+                            -> where('attendance_id', $attendanceId)
+                            -> where('user_id', $user->id)
+                            -> latest()
+                            -> first();
+        } elseif ($attendance) {
+            $correction = Correction::where('attendance_id', $attendance->id)
+                            ->whereDate('clock_in_at', $targetDate)
+                            ->latest()
+                            ->first();
+        } else {
+            $correction = null;
+        }
 
         if (Auth::guard('admin') -> check() && $attendance) {
             return [
@@ -281,13 +310,14 @@ class Attendance extends Model
                 'attendance' => $attendance,
                 'intervals' => $attendance->intervals,
                 'correction' => optional($correction) -> status,
-                'comment' => optional($correction) -> comment,
+                'comment' => optional($adminComment) -> comment,
                 'targetDate' => $targetDate,
             ];
         }
 
         if ($correction) {
             $attendance = new Attendance();
+            $attendance -> id = $attendanceId;
             $attendance -> clock_in_at = $correction -> clock_in_at;
             $attendance -> clock_out_at = $correction -> clock_out_at;
             $attendance -> exists = false;
@@ -309,6 +339,8 @@ class Attendance extends Model
                     'clock_in_at' => null,
                     'clock_out_at' => null,
             ]);
+
+            $attendance -> id = $attendanceId;
             
             $intervals = collect();
         } else {
