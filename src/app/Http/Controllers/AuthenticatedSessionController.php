@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminLoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,12 +15,12 @@ class AuthenticatedSessionController extends Controller
         return view('admin.auth.login');
     }
 
-    public function store(Request $request)
+    public function store(AdminLoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request -> only(
+                            'email', 
+                            'password'
+                        );
 
         if (Auth::guard('admin') -> attempt($credentials, $request -> boolean('remember'))) {
             $request 
@@ -28,17 +29,19 @@ class AuthenticatedSessionController extends Controller
 
             return redirect() -> route('admin.attendance.list');
         }
-
-        throw ValidationException::withMessages([
-            'email' => __('認証に失敗しました'),
-        ]);
     }
 
     public function destroy(Request $request)
     {
         Auth::guard('admin') -> logout();
-        $request->session() -> invalidate();
-        $request->session() -> regenerateToken();
+
+        $request
+            -> session() 
+            -> invalidate();
+
+        $request
+            -> session() 
+            -> regenerateToken();
 
         return redirect() -> route('admin.login');
     }

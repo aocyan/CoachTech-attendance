@@ -192,3 +192,11 @@ tr {
     border-radius: 10px;
     cursor: pointer;
 }
+
+.form__error {
+    margin: 0px 20% 10px;
+    width: 60%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #db2626;
+}

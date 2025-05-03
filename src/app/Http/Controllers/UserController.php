@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DetailRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\Leave;
 use App\Models\Correction;
 use App\Models\Interval;
@@ -12,7 +14,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
 	{
         $user = User::store();
 
@@ -110,7 +112,6 @@ class UserController extends Controller
 			$checkOtherCorrection = null;
 		}
 
-
     	return view('user.detail', [
         	'user' => $user,
         	'attendance' => $detailData['attendance'],
@@ -123,7 +124,7 @@ class UserController extends Controller
     	]);
 	}
 
-	public function correction(Request $request,$id)
+	public function correction(DetailRequest $request,$id)
 	{
 		$date = $request -> input('date_data');
 

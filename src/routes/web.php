@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\CustomLoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticatedSessionController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\RequestController;
 |
 */
 Route::post('/register/store', [UserController::class, 'store']) -> name('user.store');
+Route::post('/login', [CustomLoginController::class, 'login']);
 
 Route::middleware('auth') -> group(function () {
     Route::get('/attendance', [UserController::class, 'attend']) -> name('user.attend');

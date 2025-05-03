@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminDetailRequest;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Admin;
@@ -80,7 +81,7 @@ class AdminController extends Controller
     	]);
 	}
 
-	public function correction(Request $request, $id)
+	public function correction(AdminDetailRequest $request, $id)
 	{
 		$date = $request -> input('date_data');
 

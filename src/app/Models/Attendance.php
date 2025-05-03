@@ -160,7 +160,7 @@ class Attendance extends Model
                         -> whereMonth('date', $month)
                         -> get()
                         -> keyBy(function ($attendance) {
-                            return Carbon::parse($attendance->date)->format('Y-m-d');
+                            return Carbon::parse($attendance->date) -> format('Y-m-d');
                         });
 
         $dates = [];
@@ -287,7 +287,7 @@ class Attendance extends Model
             -> whereDate('clock_in_at', $targetDate)
             -> first();
 
-        $adminComment = Comment::where('attendance_id', $attendanceId)->first();
+        $adminComment = Comment::where('attendance_id', $attendanceId) -> first();
 
         if ($correctionId && $attendanceId) {
             $correction = Correction::where('id', $correctionId)
@@ -297,9 +297,9 @@ class Attendance extends Model
                             -> first();
         } elseif ($attendance) {
             $correction = Correction::where('attendance_id', $attendance->id)
-                            ->whereDate('clock_in_at', $targetDate)
-                            ->latest()
-                            ->first();
+                            -> whereDate('clock_in_at', $targetDate)
+                            -> latest()
+                            -> first();
         } else {
             $correction = null;
         }

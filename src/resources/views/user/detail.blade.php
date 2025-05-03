@@ -33,6 +33,16 @@
                 <input class="clock-start__td--text" type="text" name="clock_in" value="{{ $attendance -> clock_in_at ? $attendance -> clock_in_at -> format('H:i') : '' }}" placeholder="08:00" />
                 <span class="clock__mark">～</span>
                 <input class="clock-end__td--text" type="text" name="clock_out" value="{{ $attendance -> clock_out_at ? $attendance -> clock_out_at -> format('H:i') : '' }}" />
+                @error('clock_in')
+                    <div class="form__error">
+                        {{ $message }}
+                    </div>
+                @enderror
+                @error('clock_out')
+                    <div class="form__error">
+                        {{ $message }}
+                    </div>
+                @enderror
             </td>
         </tr>
         @if ( $intervals -> isEmpty() )
@@ -75,14 +85,31 @@
                     value="{{ isset($intervals[$i]) && $intervals[$i] -> interval_in_at ? $intervals[$i] -> interval_in_at -> format('H:i') : '' }}" 
                     placeholder="09:30" />
                     <span class="clock__mark">～</span> 
-                    <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ isset($intervals[$i]) && $intervals[$i] -> interval_out_at ? $intervals[$i] -> interval_out_at -> format('H:i') : '' }}" /><br>
+                    <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ isset($intervals[$i]) && $intervals[$i] -> interval_out_at ? $intervals[$i] -> interval_out_at -> format('H:i') : '' }}" />
+                    @error("interval_in.$i")
+                        <div class="form__error">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    @error("interval_out.$i")
+                        <div class="form__error">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </td>
             </tr>
             @endfor
         @endif
         <tr>
             <th class="table__th--text">備考</th>
-                <td><textarea class="table__comment--text" name="comment">{{ $comment ?? '' }}</textarea></td>
+                <td>
+                    <textarea class="table__comment--text" name="comment">{{ $comment ?? '' }}</textarea>
+                    @error("comment")
+                        <div class="form__error">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </td>
         </tr>
     </table>
     @if ( $correction === 'unapproved' )
@@ -129,60 +156,101 @@
                 <input class="clock-start__td--text" type="text" name="clock_in" value="{{ $attendance -> clock_in_at ? $attendance -> clock_in_at -> format('H:i') : '' }}" placeholder="08:00" />
                 <span class="clock__mark">～</span>
                 <input class="clock-end__td--text" type="text" name="clock_out" value="{{ $attendance -> clock_out_at ? $attendance -> clock_out_at -> format('H:i') : '' }}" />
+                @error('clock_in')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+                @error('clock_out')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
             </td>
         </tr>
         @if ( $intervals -> isEmpty() )
-            <tr>
-                <th class="table__th--text">休憩1</th>
-                <td>          
-                    <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
-                    <span class="clock__mark">～</span>
-                    <input class="clock-end__td--text" type="text" name="interval_out[]" />
-                </td>
-            </tr>
-            <tr>
-                <th class="table__th--text">休憩2</th>
-                <td>
-                    <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
-                    <span class="clock__mark">～</span>
-                    <input class="clock-end__td--text" type="text" name="interval_out[]" />
-                </td>
-            </tr>
-            <tr>
-                <th class="table__th--text">休憩3</th>
-                <td>
-                    <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
-                    <span class="clock__mark">～</span>
-                    <input class="clock-end__td--text" type="text" name="interval_out[]" />
-                </td>
-            </tr>
+        <tr>
+            <th class="table__th--text">休憩1</th>
+            <td>          
+                <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
+                <span class="clock__mark">～</span>
+                <input class="clock-end__td--text" type="text" name="interval_out[]" />
+                @error('interval_in.0')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+                @error('interval_out.0')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+            </td>
+        </tr>
+        <tr>
+            <th class="table__th--text">休憩2</th>
+            <td>
+                <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
+                <span class="clock__mark">～</span>
+                <input class="clock-end__td--text" type="text" name="interval_out[]" />
+                @error('interval_in.1')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+                @error('interval_out.1')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+            </td>
+        </tr>
+        <tr>
+            <th class="table__th--text">休憩3</th>
+            <td>
+                <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
+                <span class="clock__mark">～</span>
+                <input class="clock-end__td--text" type="text" name="interval_out[]" />
+                @error('interval_in.2')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+                @error('interval_out.2')
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+            </td>
+        </tr>
         @else         
-            @foreach ( $intervals as $index => $interval )
-            <tr>
-                <th class="table__th--text">         
-                    休憩{{ $index + 1 }}
-                </th>
-                <td>
-                    <input class="clock-start__td--text" type="text" name="interval_in[]" 
-                    value="{{ optional($interval -> interval_in_at) -> format('H:i') }}" 
-                    placeholder="09:30" />
-                    <span class="clock__mark">～</span> 
-                    <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ optional($interval -> interval_out_at) -> format('H:i') }}" /><br>
-                </td>
-            </tr>
-            @endforeach
-            <tr>
-                <th class="table__th--text">休憩{{ count( $intervals ) + 1 }}</th>
-                <td>
-                    <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
-                    <span class="clock__mark">～</span>
-                    <input class="clock-end__td--text" type="text" name="interval_out[]" />
-                </td>
-            </tr>
+        @foreach ( $intervals as $index => $interval )
+        <tr>
+            <th class="table__th--text">         
+                休憩{{ $index + 1 }}
+            </th>
+            <td>
+                <input class="clock-start__td--text" type="text" name="interval_in[]" value="{{ optional($interval->interval_in_at)->format('H:i') }}" placeholder="09:30" />
+                <span class="clock__mark">～</span> 
+                <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ optional($interval->interval_out_at)->format('H:i') }}" />
+                @error('interval_in.' . $index)
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+                @error('interval_out.' . $index)
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+            </td>
+        </tr>
+        @endforeach
+        <tr>
+            <th class="table__th--text">休憩{{ count( $intervals ) + 1 }}</th>
+            <td>
+                <input class="clock-start__td--text" type="text" name="interval_in[]" placeholder="09:30" />
+                <span class="clock__mark">～</span>
+                <input class="clock-end__td--text" type="text" name="interval_out[]" />
+                @error('interval_in.' . count($intervals))
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+                @error('interval_out.' . count($intervals))
+                    <div class="form__error">{{ $message }}</div>
+                @enderror
+            </td>
+        </tr>
         @endif
         <tr>
             <th class="table__th--text">備考</th>
-            <td><textarea class="table__comment--text" name="comment">{{ $comment ?? '' }}</textarea></td>
+            <td>
+                <textarea class="table__comment--text" name="comment">{{ $comment ?? '' }}</textarea>
+                @error('comment')
+                    <div class="form__error">
+                        {{ $message }}
+                    </div>
+                @enderror     
+            </td>
         </tr>
     </table>
     <div class="link__container">

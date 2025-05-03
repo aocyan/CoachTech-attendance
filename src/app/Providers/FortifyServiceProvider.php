@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Requests\LoginRequest;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
