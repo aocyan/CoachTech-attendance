@@ -63,7 +63,7 @@ class DetailRequest extends FormRequest
             foreach ($intervalIns as $i => $in) {
                 $out = $intervalOuts[$i] ?? null;
 
-                if (empty($in) || empty($out)) {
+                if (($in && !$out) || (!$in && $out)) {
                     $validator
                         -> errors()
                         -> add('interval_in.0', '休憩開始時間と休憩終了時間の両方を入力してください');

@@ -30,7 +30,7 @@
         <tr>
             <th class="table__th--text">出勤・退勤</th>
             <td>
-                <input class="clock-start__td--text" type="text" name="clock_in" value="{{ $attendance -> clock_in_at ? $attendance -> clock_in_at -> format('H:i') : '' }}" placeholder="08:00" />
+                <input class="clock-start__td--text" type="text" name="clock_in" value="{{ old( $attendance -> clock_in_at ? $attendance -> clock_in_at -> format('H:i') : '' ) }}" placeholder="08:00" />
                 <span class="clock__mark">～</span>
                 <input class="clock-end__td--text" type="text" name="clock_out" value="{{ $attendance -> clock_out_at ? $attendance -> clock_out_at -> format('H:i') : '' }}" />
                 @error('clock_in')
@@ -153,9 +153,9 @@
         <tr>
             <th class="table__th--text">出勤・退勤</th>
             <td>
-                <input class="clock-start__td--text" type="text" name="clock_in" value="{{ $attendance -> clock_in_at ? $attendance -> clock_in_at -> format('H:i') : '' }}" placeholder="08:00" />
+                <input class="clock-start__td--text" type="text" name="clock_in" value="{{ old( $attendance -> clock_in_at ? $attendance -> clock_in_at -> format('H:i') : '' ) }}" placeholder="08:00" />
                 <span class="clock__mark">～</span>
-                <input class="clock-end__td--text" type="text" name="clock_out" value="{{ $attendance -> clock_out_at ? $attendance -> clock_out_at -> format('H:i') : '' }}" />
+                <input class="clock-end__td--text" type="text" name="clock_out" value="{{ old( $attendance -> clock_out_at ? $attendance -> clock_out_at -> format('H:i') : '' ) }}" />
                 @error('clock_in')
                     <div class="form__error">{{ $message }}</div>
                 @enderror
@@ -214,9 +214,9 @@
                 休憩{{ $index + 1 }}
             </th>
             <td>
-                <input class="clock-start__td--text" type="text" name="interval_in[]" value="{{ optional($interval->interval_in_at)->format('H:i') }}" placeholder="09:30" />
+                <input class="clock-start__td--text" type="text" name="interval_in[]" value="{{ old( optional($interval->interval_in_at)->format('H:i') ) }}" placeholder="09:30" />
                 <span class="clock__mark">～</span> 
-                <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ optional($interval->interval_out_at)->format('H:i') }}" />
+                <input class="clock-end__td--text" type="text" name="interval_out[]" value="{{ old( optional($interval->interval_out_at)->format('H:i') ) }}" />
                 @error('interval_in.' . $index)
                     <div class="form__error">{{ $message }}</div>
                 @enderror
@@ -244,7 +244,7 @@
         <tr>
             <th class="table__th--text">備考</th>
             <td>
-                <textarea class="table__comment--text" name="comment">{{ $comment ?? '' }}</textarea>
+                <textarea class="table__comment--text" name="comment">{{ old( $comment ?? '' ) }}</textarea>
                 @error('comment')
                     <div class="form__error">
                         {{ $message }}
