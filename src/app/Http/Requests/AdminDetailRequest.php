@@ -37,10 +37,10 @@ class AdminDetailRequest extends FormRequest
         return [
             'clock_in.required' => '出勤時間を入力してください。',
             'clock_out.required' => '退勤時間を入力してください。',
-            'clock_in.date_format' => '出勤時間の形式が正しくありません。',
-            'clock_out.date_format' => '退勤時間の形式が正しくありません。',
-            'interval_in.*.date_format' => '休憩開始時間の形式が正しくありません。',
-            'interval_out.*.date_format' => '休憩終了時間の形式が正しくありません。',
+            'clock_in.date_format' => '出勤時間の入力方法が正しくありません（例：08:00)',
+            'clock_out.date_format' => '退勤時間の入力方法が正しくありません（例：18:00）',
+            'interval_in.*.date_format' => '休憩開始時間の入力方法が正しくありません（例：09:30）',
+            'interval_out.*.date_format' => '休憩終了時間の入力方法が正しくありません（例：10:00）',
             'comment.required' => '備考を記入してください。',
         ];
     }
