@@ -20,5 +20,9 @@ class CustomLoginController extends Controller
 
             return redirect() -> intended('/attendance');
         }
+
+        return back() -> withErrors([
+            'email' => 'ログイン情報が登録されていません',
+        ]) -> withInput(); 
     }
 }

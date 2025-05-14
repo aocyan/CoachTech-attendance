@@ -43,6 +43,6 @@ class AuthenticatedSessionController extends Controller
             -> session() 
             -> regenerateToken();
 
-        return redirect() -> route('admin.login');
+        return view('admin.auth.login');
     }
 }

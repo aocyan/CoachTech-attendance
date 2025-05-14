@@ -70,7 +70,6 @@ class StaffController extends Controller
 
 	public function correction($attendance_correct_request)
 	{
-
 		$correction = Correction::findOrFail($attendance_correct_request);
 
 		Staff::attendanceDataUpdate($correction -> id);

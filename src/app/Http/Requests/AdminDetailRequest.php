@@ -35,13 +35,13 @@ class AdminDetailRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'clock_in.required' => '出勤時間を入力してください。',
-            'clock_out.required' => '退勤時間を入力してください。',
+            'clock_in.required' => '出勤時間を入力してください',
+            'clock_out.required' => '退勤時間を入力してください',
             'clock_in.date_format' => '出勤時間の入力方法が正しくありません（例：08:00)',
             'clock_out.date_format' => '退勤時間の入力方法が正しくありません（例：18:00）',
             'interval_in.*.date_format' => '休憩開始時間の入力方法が正しくありません（例：09:30）',
             'interval_out.*.date_format' => '休憩終了時間の入力方法が正しくありません（例：10:00）',
-            'comment.required' => '備考を記入してください。',
+            'comment.required' => '備考を記入してください',
         ];
     }
 
@@ -57,8 +57,8 @@ class AdminDetailRequest extends FormRequest
                     -> add('clock_in', '出勤時間もしくは退勤時間が不適切な値です');
             }
 
-            $intervalIns = $this -> input('interval_in', []);
-            $intervalOuts = $this -> input('interval_out', []);
+            $intervalIns = (array) $this -> input('interval_in');
+            $intervalOuts = (array) $this -> input('interval_out');
 
             foreach ($intervalIns as $i => $in) {
                 $out = $intervalOuts[$i] ?? null;
@@ -66,7 +66,7 @@ class AdminDetailRequest extends FormRequest
                 if (($in && !$out) || (!$in && $out)) {
                     $validator
                         -> errors()
-                        -> add('interval_in.0', '休憩開始時間と休憩終了時間の両方を入力してください');
+                        -> add("interval_in.$i", '休憩開始時間と休憩終了時間の両方を入力してください');
                 }
 
                 if ($in && $in < $clockIn) {

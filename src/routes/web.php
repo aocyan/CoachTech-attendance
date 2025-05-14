@@ -19,7 +19,7 @@ use App\Http\Controllers\RequestController;
 |
 */
 Route::post('/register/store', [UserController::class, 'store']) -> name('user.store');
-Route::post('/login', [CustomLoginController::class, 'login']);
+Route::post('/login/certification', [CustomLoginController::class, 'login']) -> name('user.login');
 
 Route::middleware('auth') -> group(function () {
     Route::get('/attendance', [UserController::class, 'attend']) -> name('user.attend');
@@ -44,7 +44,7 @@ Route::prefix('admin') -> name('admin.')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         -> middleware('guest:admin')
         -> name('login');
-    Route::post('login', [AuthenticatedSessionController::class, 'store'])
+    Route::post('login/certification', [AuthenticatedSessionController::class, 'store'])
         -> middleware('guest:admin')
         -> name('login');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])

@@ -8,7 +8,7 @@
 <div class="header__logo">
     <h1>ログイン<h1>
 </div>
-<form action="/login" method="post">
+<form action="{{ route('user.login') }}" method="post">
 @csrf
     <div class="form__container">
         <p>メールアドレス</p>
