@@ -48,23 +48,23 @@
 <h3>11.マイグレーション</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内PHPコンテナ上で<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;php artisan migrate　を実行し、マイグレーションする。</p>
-<h3>12.ダミーデータを挿入</h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内PHPコンテナ上で<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;php artisan db:seed　を実行し、ダミーデータを挿入する。<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;※1.管理者は<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;メールアドレス:admin@example.com<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;パスワード:1234abcd<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;に設定してあります。管理者ログインページアドレスは<a href="http://localhost/admin/login">http://localhost/admin/login</a>です。<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;※2.全ユーザのパスワードを1234abcdに設定してありますが、メールアドレスはランダムにしてありますので、<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;お手数ですが、ユーザをダミーデータでテストする際は、メールアドレスはhttp://localhost:8080にアクセスして、<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;userテーブルに記載されているメールアドレスを使用してください。</p>
-<h3>13.localhostにアクセス(エラー対策)</h3>
+<h3>12.localhostにアクセス(エラー対策)</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/login">http://localhost/login</a> にアクセスする<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※1.permissionエラーが出た際には、ubuntu内CoachTech-fleaディレクトリで、<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chmod -R 777 src/*　を実行してください。<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※2.chmod(): Operation not permittedエラーが出た際には、ubuntu内CoachTech-attendanceディレクトリで<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chown -R www-data:www-data src/storage　を実行してください。<br>
    （上記2つのエラーについてはテスト時必ず出ていたため、あらかじめ2つのコマンドを実行しておいた方がよいと思われます。）</p>
+<h3>13.ダミーデータを挿入</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内PHPコンテナ上で<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;php artisan db:seed　を実行し、ダミーデータを挿入する。<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;※1.管理者は<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;メールアドレス:admin@example.com<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;パスワード:1234abcd<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;に設定してあります。（管理者ログインページアドレスは<a href="http://localhost/admin/login">http://localhost/admin/login</a>です。）<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;※2.全ユーザのパスワードを1234abcdに設定してありますが、メールアドレスはランダムにしてありますので、<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;お手数ですが、ユーザをダミーデータでテストする際は、メールアドレスはhttp://localhost:8080にアクセスして、<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;userテーブルに記載されているメールアドレスを使用してください。</p>
 <h3>14.テストケースの実行</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;PHPコンテナ上で　php artisan test　を実行すると、すべてのテストケースを実行することができます。<br>
    &nbsp;&nbsp;&nbsp;&nbsp;もし、個別にテストケースを実行するときは<br>
@@ -156,7 +156,7 @@
 
 ![coachtechAttendance](https://github.com/user-attachments/assets/9c98fd14-5d70-4a2d-b93c-17c5aa1c8047)
 <h2>〇　URL</h2>
-<p>・開発環境：・ユーザログインページ&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/login">http://localhost/login</a></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            ：・管理者ログインページ&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/admin/login">http://localhost/admin/login</a></p>
+<p>・開発環境：ユーザログインページ&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/login">http://localhost/login</a></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            ：管理者ログインページ&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/admin/login">http://localhost/admin/login</a></p>
 <p>・phpMyAdmin： <a href="http://localhost:8080/">http://localhost:8080/</a></p>
