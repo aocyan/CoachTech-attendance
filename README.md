@@ -54,7 +54,7 @@
    &nbsp;&nbsp;&nbsp;&nbsp;※1.管理者は<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;メールアドレス:admin@example.com<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;パスワード:1234abcd<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;に設定してあります。<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;に設定してあります。管理者ログインページアドレスは<a href="http://localhost/admin/login">http://localhost/admin/login</a>です。<br>
    &nbsp;&nbsp;&nbsp;&nbsp;※2.全ユーザのパスワードを1234abcdに設定してありますが、メールアドレスはランダムにしてありますので、<br>
    &nbsp;&nbsp;&nbsp;&nbsp;お手数ですが、ユーザをダミーデータでテストする際は、メールアドレスはhttp://localhost:8080にアクセスして、<br>
    &nbsp;&nbsp;&nbsp;&nbsp;userテーブルに記載されているメールアドレスを使用してください。</p>
