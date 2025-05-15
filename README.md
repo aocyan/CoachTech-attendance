@@ -63,7 +63,7 @@
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;パスワード:1234abcd<br>
    &nbsp;&nbsp;&nbsp;&nbsp;に設定してあります。（管理者ログインページアドレスは<a href="http://localhost/admin/login">http://localhost/admin/login</a>です。）<br>
    &nbsp;&nbsp;&nbsp;&nbsp;※2.全ユーザのパスワードを1234abcdに設定してありますが、メールアドレスはランダムにしてありますので、<br>
-   &nbsp;&nbsp;&nbsp;&nbsp;お手数ですが、ユーザをダミーデータでテストする際は、メールアドレスはhttp://localhost:8080にアクセスして、<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;お手数ですが、ユーザをダミーデータでテストする際は、メールアドレスは<a href="http://localhost:8080/">http://localhost:8080/</a>にアクセスして、<br>
    &nbsp;&nbsp;&nbsp;&nbsp;userテーブルに記載されているメールアドレスを使用してください。</p>
 <h3>14.テストケースの実行</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;PHPコンテナ上で　php artisan test　を実行すると、すべてのテストケースを実行することができます。<br>
