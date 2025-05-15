@@ -153,7 +153,6 @@
 <p>・Composer:ver.2.8.4</p>
 <p>・ubuntu:ver.24.04.1 LTS</p>
 <h2>〇　ER図</h2>
-![coachtechAttendance](https://github.com/user-attachments/assets/e5f84b20-5bd5-4563-b09e-5229109e3db2)
 
 ![coachtechAttendance](https://github.com/user-attachments/assets/9c98fd14-5d70-4a2d-b93c-17c5aa1c8047)
 <h2>〇　URL</h2>
