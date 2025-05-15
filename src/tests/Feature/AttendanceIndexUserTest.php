@@ -257,7 +257,7 @@ class AttendanceIndexUserTest extends TestCase
 
         $response -> assertSee('┃ 勤務一覧');
         $response -> assertSee('2025年5月');
-        $response -> assertSee('来月➡');
+        $response -> assertSee('翌月➡');
 
         $response = $this -> get('/attendance/list?year=2025&month=6');
 

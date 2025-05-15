@@ -61,7 +61,7 @@
         <input class="form__date--text" type="time" name="time" value="{{ $dateTime['time'] }}" readonly />
     </div>
     <div class="form__button">
-        <button class="form__button--submit" type="submit">休憩終わり</button>
+        <button class="form__button-interval--submit" type="submit">休憩終わり</button>
     </div>
 </form>
 @elseif(Auth::user()->status === 'clockOut')

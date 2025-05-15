@@ -27,7 +27,7 @@ class Staff extends Model
 
     public static function exportMonthCsv(User $user, int $year, int $month): StreamedResponse
     {
-        $dates = Attendance::indexTime($year, $month)['dates'];
+        $dates = Attendance::indexTime($user, $year, $month)['dates'];
         $clockInTimes = Attendance::getMonthClockTime($user, $year, $month)['clockInTimes'];
         $clockOutTimes = Attendance::getMonthClockTime($user, $year, $month)['clockOutTimes'];
         $intervalTotalTimes = Interval::getMonthIntervalTotalTime($user, $year, $month)['intervalTotalTimes'];

@@ -25,7 +25,7 @@
             <a class="nav__link" href="{{ route('user.index') }}">勤務一覧</a>
         </div>
         <div class="nav__box">
-            <a class="nav__link" href="{{ route('user.apply') }}">修正一覧</a>
+            <a class="nav__link" href="{{ route('user.apply') }}">申請一覧</a>
         </div>
         <div class="nav__box">
             <form action="/logout" method="post">

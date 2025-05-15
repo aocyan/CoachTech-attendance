@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run(int $userCount = 1, int $attendanceDays = 250): void
+    public function run(int $userCount = 6, int $attendanceDays = 250): void
     {
         Admin::factory()->create([
             'email' => 'admin@example.com',

@@ -20,7 +20,7 @@
             <input class="nav__date--text" type="text" name="date" value="{{ $displayMonth -> format('Y年n月') }}" readonly />
         </div>
         <div class="nav__next-month">
-            <a class="month__link--text" href="{{ route('user.index', ['year' => $nextDate->year, 'month' => $nextDate -> month]) }}">来月➡</a>
+            <a class="month__link--text" href="{{ route('user.index', ['year' => $nextDate->year, 'month' => $nextDate -> month]) }}">翌月➡</a>
         </div>
     </div>
 </nav>
