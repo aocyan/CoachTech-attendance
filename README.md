@@ -156,5 +156,5 @@
 
 ![coachtechAttendance](https://github.com/user-attachments/assets/9c98fd14-5d70-4a2d-b93c-17c5aa1c8047)
 <h2>〇　URL</h2>
-<p>・開発環境: http://localhost/</p>
-<p>・phpMyAdmin： http://localhost:8080/</p>
+<p>・開発環境: <a href="http://localhost/">http://localhost/</a></p>
+<p>・phpMyAdmin： <a href="http://localhost:8080/">http://localhost:8080/</a></p>
