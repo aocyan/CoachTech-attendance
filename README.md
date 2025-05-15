@@ -1,4 +1,4 @@
-<h1>CoachTech-attendance(コーチテック勤務管理)</h1>
+![coachtechAttendance](https://github.com/user-attachments/assets/6fac4393-21d5-44c0-bb29-aaeef0c85c8d)<h1>CoachTech-attendance(コーチテック勤務管理)</h1>
 <h2>〇　環境構築手順</h2>
 <p>※OSはWindows11を使用しております。OSがMacを使用の際は適宜環境構築お願いいたします。</p>
 <h3>1.クローンについて</h3>
@@ -152,8 +152,8 @@
 <p>・MySQL:ver.15.1</p>
 <p>・Composer:ver.2.8.4</p>
 <p>・ubuntu:ver.24.04.1 LTS</p>
-<h2>〇　ER図</h2>
-!https://github.com/user-attachments/assets/627cdd17-787f-48aa-b41c-e7bac996e66c
+<h2>〇　ER図/h2>
+<![coachtechAttendance](https://github.com/user-attachments/assets/81319402-4722-4ebc-8b83-0ff3b0c2cc5e)
 <h2>〇　URL</h2>
 <p>・開発環境: http://localhost/</p>
 <p>・phpMyAdmin： http://localhost:8080/</p>
