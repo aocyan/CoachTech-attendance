@@ -37,7 +37,7 @@
   でファイルを書き換える権限を付与させてください。<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例：sudo chown aocyan:aocyan /home/aocyan/coachtech/laravel/CoachTech-attendance/src/.env</p>
 <h3>8.mysqlのデータベース確認</h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;http://localhost:8080 にデータベースが存在しているか確認する（laravel_dbがあるか確認してください）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost:8080/">http://localhost:8080</a> にデータベースが存在しているか確認する（laravel_dbがあるか確認してください）</p>
 <h3>9.アプリケーションキーの生成</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内PHPコンテナ上で<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;php artisan key:generate　を実行し、アプリケーションキーを生成する。
@@ -59,7 +59,7 @@
    &nbsp;&nbsp;&nbsp;&nbsp;お手数ですが、ユーザをダミーデータでテストする際は、メールアドレスはhttp://localhost:8080にアクセスして、<br>
    &nbsp;&nbsp;&nbsp;&nbsp;userテーブルに記載されているメールアドレスを使用してください。</p>
 <h3>13.localhostにアクセス(エラー対策)</h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;http://localhost/ にアクセスする<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/login">http://localhost/login</a> にアクセスする<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※1.permissionエラーが出た際には、ubuntu内CoachTech-fleaディレクトリで、<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chmod -R 777 src/*　を実行してください。<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※2.chmod(): Operation not permittedエラーが出た際には、ubuntu内CoachTech-attendanceディレクトリで<br>
