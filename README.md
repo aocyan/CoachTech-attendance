@@ -152,8 +152,8 @@
 <p>・MySQL:ver.15.1</p>
 <p>・Composer:ver.2.8.4</p>
 <p>・ubuntu:ver.24.04.1 LTS</p>
-<h2>〇　ER図/h2>
-![coachtechAttendance](https://github.com/user-attachments/assets/6fac4393-21d5-44c0-bb29-aaeef0c85c8d)
+<h2>〇　ER図</h2>
+![coachtechAttendance](https://github.com/user-attachments/assets/9c98fd14-5d70-4a2d-b93c-17c5aa1c8047)
 <h2>〇　URL</h2>
 <p>・開発環境: http://localhost/</p>
 <p>・phpMyAdmin： http://localhost:8080/</p>
