@@ -9,7 +9,7 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内で　docker-compose up -d --build　を実行する。<br>
    &nbsp;&nbsp;&nbsp;&nbsp;(CoachTech-attendanceディレクトリ内で実行する。)</p>
 <h3>4.VSCodeの起動とymlファイルの確認</h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu上で　code.　を実行(CoachTech-attendanceディレクトリ内で実行する)し、"docker-compose.yml"ファイル内の<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu上で　code .　を実行(CoachTech-attendanceディレクトリ内で実行する)し、"docker-compose.yml"ファイル内の<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysql:<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: mysql:8.0.26<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
