@@ -312,7 +312,7 @@ class UserInfoAdminTest extends TestCase
         $response -> assertSee('2025年5月');
         $response -> assertSee('┃ 山田　太郎さんの月次勤務');
 
-        $response -> assertSee('来月➡');
+        $response -> assertSee('翌月➡');
         $response = $this -> get("/admin/attendance/staff/{$user -> id}?year=2025&month=6");
 
         $response -> assertStatus(200);
