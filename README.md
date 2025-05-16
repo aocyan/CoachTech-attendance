@@ -153,7 +153,9 @@
 <p>・Composer:ver.2.8.4</p>
 <p>・ubuntu:ver.24.04.1 LTS</p>
 <h2>〇　ER図</h2>
-![coachtechAttendance](https://github.com/user-attachments/assets/9f9a21b0-8a81-4cde-8bb2-7d2e46617933)
+
+![coachtechAttendance](https://github.com/user-attachments/assets/d9386f0d-0f71-429d-95b8-1f2f6110017e)
+
 
 <h2>〇　URL</h2>
 <p>・開発環境：ユーザログインページ&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/login">http://localhost/login</a></p>
