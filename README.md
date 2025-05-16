@@ -54,7 +54,7 @@
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chmod -R 777 src/*　を実行してください。<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※2.chmod(): Operation not permittedエラーが出た際には、ubuntu内CoachTech-attendanceディレクトリで<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chown -R www-data:www-data src/storage　を実行してください。<br>
-   （上記2つのエラーについてはテスト時必ず出ていたため、あらかじめ2つのコマンドを実行しておいた方がよいと思われます。）</p>
+   （※1のエラーについてはテスト時必ず出ていたため、あらかじめコマンドを実行しておいた方がよいと思われます。）</p>
 <h3>13.ダミーデータを挿入</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内PHPコンテナ上で<br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;php artisan db:seed　を実行し、ダミーデータを挿入する。<br>
