@@ -2,7 +2,7 @@
 <h2>〇　環境構築手順</h2>
 <p>※OSはWindows11を使用しております。OSがMacを使用の際は適宜環境構築お願いいたします。</p>
 <h3>1.クローンする</h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内で　git@github.com:aocyan/CoachTech-attendance.git　を実行しクローンする。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;ubuntu内で　git clone git@github.com:aocyan/CoachTech-attendance.git　を実行しクローンする。</p>
 <h3>2.DockerDesktopの立ち上げ</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;DockerDesktopアプリを立ち上げる。</p>
 <h3>3.docker-compose up -d --build　の実行</h3>
