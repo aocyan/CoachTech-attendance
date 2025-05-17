@@ -148,7 +148,8 @@
 <p>ⅲ）&nbsp;&nbsp;&nbsp;&nbsp;「承認」ボタンを「承認する」ボタンにボタン名を変更</p>
 <p>ⅳ）&nbsp;&nbsp;&nbsp;&nbsp;「勤務一覧」ボタンを追加して、勤務一覧に容易に戻れるようにする。</p>
 <h2>〇　その他</h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;自動メール認証は実装しておりません。</p>
+<p>ⅰ）&nbsp;&nbsp;&nbsp;&nbsp;自動メール認証は実装しておりません。</p>
+<p>ⅱ）&nbsp;&nbsp;&nbsp;&nbsp;CSV出力はMicrosoftのExcelで実装確認済みです。</p>
 <h2>〇  使用技術</h2>
 <p>・PHP:ver.7.4.9</p>
 <p>・Laravel:ver.8.83.29</p>
