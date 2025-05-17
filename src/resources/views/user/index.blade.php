@@ -51,7 +51,7 @@
         <td>
             <input class="table__td--text" type="text" type="text" value="{{ $workingTotalTimes[$day['date'] -> format('Y-m-d')] ?? '' }}" readonly />
         </td>
-        <td>
+        <td class="{{ $loop -> last ? 'last-row__right' : '' }}">
              <a class="table__link--button" href="{{ route('user.detail', ['id' => Auth::id()]) }}?date={{ $day['date_format'] }}@if($day['attendance_id'])&attendance_id={{ $day['attendance_id'] }}@endif">詳細ページへ</a>
         </td>
     </tr>

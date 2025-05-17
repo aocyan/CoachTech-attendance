@@ -287,7 +287,9 @@ class Attendance extends Model
             -> whereDate('clock_in_at', $targetDate)
             -> first();
 
-        $adminComment = Comment::where('attendance_id', $attendanceId) -> first();
+        if($attendance !== null){
+            $adminComment = Comment::where('attendance_id', $attendance -> id) -> first();
+        }
 
         if ($correctionId && $attendanceId) {
             $correction = Correction::where('id', $correctionId)

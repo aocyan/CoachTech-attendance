@@ -98,7 +98,7 @@ class UserController extends Controller
 		$user = User::findOrFail($id);
 		$detailData = Attendance::detailData($user -> id,$request);
 
-		$commentRequest = request() -> query('comment');
+		$commentRequest = request() -> query('comment');		
 
     	if ($commentRequest !== null) {
         	$detailData['comment'] = urldecode( $commentRequest );
