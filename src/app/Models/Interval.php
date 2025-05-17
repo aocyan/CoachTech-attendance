@@ -86,7 +86,7 @@ class Interval extends Model
             $interval = new Interval();
             $interval -> attendance_id = $attendance->id;
             $interval -> interval_in_at = now();
-        } elseif( $interval->interval_in_at === null && $attendance !== null ){
+        } elseif( $interval -> interval_in_at === null && $attendance !== null ){
                 $interval -> interval_in_at = now();
         } else{
             $interval = new Interval();
@@ -115,9 +115,9 @@ class Interval extends Model
             -> latest()
             -> first();
 
-        if ($interval !== null && $interval->interval_out_at === null) {
-            $interval->interval_out_at = now();
-            $interval->save();
+        if ($interval !== null && $interval -> interval_out_at === null) {
+            $interval -> interval_out_at = now();
+            $interval -> save();
         } else {
             return back();
         }
