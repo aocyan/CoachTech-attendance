@@ -158,7 +158,8 @@
 <p>・ubuntu:ver.24.04.1 LTS</p>
 <h2>〇　ER図</h2>
 
-![coachtechAttendance](https://github.com/user-attachments/assets/d9386f0d-0f71-429d-95b8-1f2f6110017e)
+![coachtechAttendance](https://github.com/user-attachments/assets/cde1e5ed-3565-4623-b517-2f8d88edab20)
+
 
 
 <h2>〇　URL</h2>
