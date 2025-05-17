@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
                 -> regenerate();
 
             return redirect() -> route('admin.attendance.list');
+        }else {
+            return back() -> withErrors([
+                'email' => 'ログイン情報が登録されていません',
+            ]);
         }
     }
 

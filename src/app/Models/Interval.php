@@ -77,19 +77,23 @@ class Interval extends Model
             -> latest()
             -> first();
 
-        $interval = $attendance 
-            -> intervals()
+        $interval = Interval::where('attendance_id', $attendance->id)
+            -> whereNull('interval_in_at')
             -> latest()
             -> first();
         
-        if( ($interval->interval_in_at) !== null) {
+        if( $interval === null ) {
             $interval = new Interval();
             $interval -> attendance_id = $attendance->id;
             $interval -> interval_in_at = now();
+        } elseif( $interval->interval_in_at === null && $attendance !== null ){
+                $interval -> interval_in_at = now();
         } else{
+            $interval = new Interval();
+            $interval -> attendance_id = $attendance->id;
             $interval -> interval_in_at = now();
-        } 
-      
+        }
+
         $interval -> save();
     }
 
@@ -106,20 +110,17 @@ class Interval extends Model
             -> latest()
             -> first();
 
-        $interval = $attendance 
-            -> intervals()
+        $interval = Interval::where('attendance_id', $attendance->id)
+            -> whereNull('interval_out_at')
             -> latest()
             -> first();
 
-        if( ($interval->interval_out_at) !== null) {
-
-            $interval = new Interval();
-            $interval -> attendance_id = $attendance -> id;
-            $interval -> interval_out_at = now();
-        
-        } else{
-            $interval -> interval_out_at = now();
-        } 
+        if ($interval !== null && $interval->interval_out_at === null) {
+            $interval->interval_out_at = now();
+            $interval->save();
+        } else {
+            return back();
+        }
 
         $interval -> save();
     }
