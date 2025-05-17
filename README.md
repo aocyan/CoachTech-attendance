@@ -87,6 +87,7 @@
 <h4>・勤怠画面について</h4>
 <p>ⅰ）&nbsp;&nbsp;&nbsp;&nbsp;画面上部に「出勤状況」という文言を追加</p>
 <p>ⅱ）&nbsp;&nbsp;&nbsp;&nbsp;「出勤」ボタンを「出勤する」ボタンにボタン名を変更</p>
+<p>ⅲ）&nbsp;&nbsp;&nbsp;&nbsp;出勤中　→　勤務中　に文言変更</p>
 <p>ⅲ）&nbsp;&nbsp;&nbsp;&nbsp;「退勤」ボタンを「退勤する」ボタンにボタン名を変更</p>
 <p>ⅳ）&nbsp;&nbsp;&nbsp;&nbsp;「休憩入」ボタンを「休憩する」ボタンにボタン名を変更</p>
 <p>ⅴ）&nbsp;&nbsp;&nbsp;&nbsp;「休憩戻」ボタンを「休憩終わり」ボタンにボタン名を変更</p>
