@@ -26,7 +26,7 @@
 </form>
 @elseif(Auth::user()->status === 'working')
 <div class="attendance__status">
-    <p class="attendance__status--text">出勤中<p>
+    <p class="attendance__status--text">勤務中<p>
 </div>
 <div class="form__date">
     <input class="form__date--text" type="text" name="date" value="{{ $dateTime['date'] }}" readonly />
